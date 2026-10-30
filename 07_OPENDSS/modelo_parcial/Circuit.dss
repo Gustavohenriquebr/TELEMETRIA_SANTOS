@@ -1,0 +1,9 @@
+! ====================================================================
+! SUBESTACAO SANTOS 1 (STO) — FONTE DO ALIMENTADOR STO33
+! ====================================================================
+Clear
+
+! Fonte equivalente na barra de 13.8 kV da Subestação Santos 1 (Barra STO569794)
+! Tensão de operação cadastrada na BDGD: 1.028 pu
+New Circuit.STO33 basekv=13.8 pu=1.028 phases=3 bus1=MT_STO33_346 frequency=60
+~ angle=0 MVAsc3=350 MVAsc1=280

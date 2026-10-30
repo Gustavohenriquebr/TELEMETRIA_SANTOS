@@ -1,0 +1,103 @@
+COMBUSTIVEL,TIPO_VEICULO,QTD_VEICULOS,CLASSIFICACAO_ELETRICA
+ALCOOL,AUTOMOVEL,943,Combustão Convencional
+ALCOOL,CAMINHAO,2,Combustão Convencional
+ALCOOL,CAMINHONET,93,Combustão Convencional
+ALCOOL,CAMIONETA,89,Combustão Convencional
+ALCOOL,MOTOCICLO,1,Combustão Convencional
+ALCOOL/GAS NATURAL VEICULAR,AUTOMOVEL,10,Combustão Convencional
+ALCOOL/GAS NATURAL VEICULAR,CAMINHONET,2,Combustão Convencional
+ALCOOL/GAS NATURAL VEICULAR,CAMIONETA,2,Combustão Convencional
+ALCOOL/GASOLINA,AUTOMOVEL,79683,Combustão Convencional
+ALCOOL/GASOLINA,CAMINHONET,5058,Combustão Convencional
+ALCOOL/GASOLINA,CAMIONETA,9122,Combustão Convencional
+ALCOOL/GASOLINA,MICROONIB,22,Combustão Convencional
+ALCOOL/GASOLINA,MOTOCICLO,10619,Combustão Convencional
+ALCOOL/GASOLINA,MOTONETA,4126,Combustão Convencional
+ALCOOL/GASOLINA,MOTOR CASA,13,Combustão Convencional
+ALCOOL/GASOLINA,TRICICLO,5,Combustão Convencional
+ALCOOL/GASOLINA,UTILITARIO,3896,Combustão Convencional
+DIESEL,AUTOMOVEL,42,Combustão Convencional
+DIESEL,C. TRATOR,5776,Combustão Convencional
+DIESEL,CAMINHAO,2777,Combustão Convencional
+DIESEL,CAMINHONET,3295,Combustão Convencional
+DIESEL,CAMIONETA,230,Combustão Convencional
+DIESEL,MICROONIB,644,Combustão Convencional
+DIESEL,MOTOR CASA,44,Combustão Convencional
+DIESEL,ONIBUS,867,Combustão Convencional
+DIESEL,SIDE CAR,1,Combustão Convencional
+DIESEL,TR. MISTO,30,Combustão Convencional
+DIESEL,TR. RODAS,328,Combustão Convencional
+DIESEL,UTILITARIO,1185,Combustão Convencional
+DIESEL/ELETRICO,UTILITARIO,53,HEV (Híbrido não recarregável na rede)
+DIESEL/GAS NATURAL COMBUSTIVEL,TR. RODAS,1,Combustão Convencional
+ELETRICO,AUTOMOVEL,76,BEV (100% Elétrico Recarregável)
+ELETRICO,CICLOMOTO,11,BEV (100% Elétrico Recarregável)
+ELETRICO,UTILITARIO,3,BEV (100% Elétrico Recarregável)
+ELETRICO/FONTE EXTERNA,AUTOMOVEL,372,BEV (100% Elétrico Recarregável)
+ELETRICO/FONTE EXTERNA,C. TRATOR,1,BEV (100% Elétrico Recarregável)
+ELETRICO/FONTE EXTERNA,CAMINHAO,11,BEV (100% Elétrico Recarregável)
+ELETRICO/FONTE EXTERNA,CAMIONETA,24,BEV (100% Elétrico Recarregável)
+ELETRICO/FONTE EXTERNA,CICLOMOTO,25,BEV (100% Elétrico Recarregável)
+ELETRICO/FONTE EXTERNA,MOTOCICLO,16,BEV (100% Elétrico Recarregável)
+ELETRICO/FONTE EXTERNA,MOTONETA,19,BEV (100% Elétrico Recarregável)
+ELETRICO/FONTE EXTERNA,ONIBUS,3,BEV (100% Elétrico Recarregável)
+ELETRICO/FONTE EXTERNA,REBOQUE,1,BEV (100% Elétrico Recarregável)
+ELETRICO/FONTE EXTERNA,UTILITARIO,117,BEV (100% Elétrico Recarregável)
+ELETRICO/FONTE INTERNA,AUTOMOVEL,14,HEV (Híbrido não recarregável na rede)
+ELETRICO/FONTE INTERNA,CAMINHAO,2,HEV (Híbrido não recarregável na rede)
+ELETRICO/FONTE INTERNA,CICLOMOTO,15,HEV (Híbrido não recarregável na rede)
+ELETRICO/FONTE INTERNA,MOTOCICLO,5,HEV (Híbrido não recarregável na rede)
+ELETRICO/FONTE INTERNA,MOTONETA,34,HEV (Híbrido não recarregável na rede)
+ELETRICO/FONTE INTERNA,ONIBUS,6,HEV (Híbrido não recarregável na rede)
+ELETRICO/FONTE INTERNA,UTILITARIO,10,HEV (Híbrido não recarregável na rede)
+GAS METANO,REBOQUE,1,Combustão Convencional
+GAS METANO,TR. MISTO,13,Combustão Convencional
+GAS METANO,TR. RODAS,75,Combustão Convencional
+GAS NATURAL LIQUEFEITO,CAMINHONET,1,Combustão Convencional
+GAS NATURAL VEICULAR,C. TRATOR,2,Combustão Convencional
+GAS NATURAL VEICULAR,TR. RODAS,3,Combustão Convencional
+GASOGENIO,TR. RODAS,1,Combustão Convencional
+GASOLINA,AUTOMOVEL,19203,Combustão Convencional
+GASOLINA,CAMINHAO,14,Combustão Convencional
+GASOLINA,CAMINHONET,1417,Combustão Convencional
+GASOLINA,CAMIONETA,3785,Combustão Convencional
+GASOLINA,CICLOMOTO,534,Combustão Convencional
+GASOLINA,MICROONIB,12,Combustão Convencional
+GASOLINA,MOTOCICLO,23734,Combustão Convencional
+GASOLINA,MOTONETA,20643,Combustão Convencional
+GASOLINA,MOTOR CASA,4,Combustão Convencional
+GASOLINA,ONIBUS,2,Combustão Convencional
+GASOLINA,TR. RODAS,5,Combustão Convencional
+GASOLINA,TRICICLO,76,Combustão Convencional
+GASOLINA,UTILITARIO,3167,Combustão Convencional
+GASOLINA/ALCOOL/ELETRICO,AUTOMOVEL,446,HEV (Híbrido não recarregável na rede)
+GASOLINA/ALCOOL/ELETRICO,CAMINHONET,9,HEV (Híbrido não recarregável na rede)
+GASOLINA/ALCOOL/ELETRICO,CAMIONETA,156,HEV (Híbrido não recarregável na rede)
+GASOLINA/ALCOOL/ELETRICO,UTILITARIO,609,HEV (Híbrido não recarregável na rede)
+GASOLINA/ALCOOL/GAS NATURAL VEICULAR,AUTOMOVEL,187,Combustão Convencional
+GASOLINA/ALCOOL/GAS NATURAL VEICULAR,CAMINHONET,26,Combustão Convencional
+GASOLINA/ALCOOL/GAS NATURAL VEICULAR,CAMIONETA,9,Combustão Convencional
+GASOLINA/ELETRICO,AUTOMOVEL,365,HEV (Híbrido não recarregável na rede)
+GASOLINA/ELETRICO,CAMINHONET,23,HEV (Híbrido não recarregável na rede)
+GASOLINA/ELETRICO,CAMIONETA,443,HEV (Híbrido não recarregável na rede)
+GASOLINA/ELETRICO,MOTONETA,46,HEV (Híbrido não recarregável na rede)
+GASOLINA/ELETRICO,UTILITARIO,927,HEV (Híbrido não recarregável na rede)
+GASOLINA/GAS NATURAL COMBUSTIVEL,AUTOMOVEL,4,Combustão Convencional
+GASOLINA/GAS NATURAL COMBUSTIVEL,CAMINHONET,7,Combustão Convencional
+GASOLINA/GAS NATURAL COMBUSTIVEL,CAMIONETA,5,Combustão Convencional
+GASOLINA/GAS NATURAL COMBUSTIVEL,TR. RODAS,3,Combustão Convencional
+GASOLINA/GAS NATURAL VEICULAR,AUTOMOVEL,154,Combustão Convencional
+GASOLINA/GAS NATURAL VEICULAR,CAMINHAO,1,Combustão Convencional
+GASOLINA/GAS NATURAL VEICULAR,CAMINHONET,89,Combustão Convencional
+GASOLINA/GAS NATURAL VEICULAR,CAMIONETA,72,Combustão Convencional
+GASOLINA/GAS NATURAL VEICULAR,MICROONIB,2,Combustão Convencional
+GASOLINA/GAS NATURAL VEICULAR,TR. RODAS,2,Combustão Convencional
+GASOLINA/GAS NATURAL VEICULAR,UTILITARIO,2,Combustão Convencional
+HIBRIDO,CAMIONETA,188,HEV (Híbrido não recarregável na rede)
+HIBRIDO,UTILITARIO,141,HEV (Híbrido não recarregável na rede)
+HIBRIDO PLUGIN,AUTOMOVEL,1,PHEV (Híbrido Plug-in Recarregável)
+HIBRIDO PLUGIN,CAMIONETA,242,PHEV (Híbrido Plug-in Recarregável)
+HIBRIDO PLUGIN,UTILITARIO,179,PHEV (Híbrido Plug-in Recarregável)
+NAO SE APLICA,REBOQUE,2556,Combustão Convencional
+NAO SE APLICA,S. REBOQUE,9145,Combustão Convencional
+NAO SE APLICA,SIDE CAR,16,Combustão Convencional

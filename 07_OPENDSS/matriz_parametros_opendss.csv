@@ -1,0 +1,12 @@
+ELEMENTO_OPENDSS,OBJETO_REDE,PARAMETROS_NECESSARIOS,STATUS_DISPONIBILIDADE,FONTE_DADOS,CLASSIFICACAO_QUALIDADE
+Circuit / Vsource,Subestação Santos 1,"Tensão Base 13.8 kV, pu=1.028, MVAsc=350",Disponível,BDGD CTMT + UNTRAT,B
+LineCode,19 Tipos de Condutores,"R1, X1, R0, X0, Ampacidade Nom/Max",Disponível,BDGD SEGCON,B
+Line (MT),730 Trechos de Linha,"Comprimento, PAC_1, PAC_2, Fases, LineCode",Disponível,BDGD SSDMT,B
+Line (Chaves),86 Chaves Seccionadoras,"PAC_1, PAC_2, P_N_OPE, Fases",Disponível,BDGD UNSEMT,B
+Transformer,105 Transformadores MT/BT,"kVA, kV Prim/Sec, R%, XHL, Perdas Ferro/Cobre",Disponível,BDGD UNTRMT / EQTRMT,B
+Load,105 Cargas Agregadas (6.499 UCs),Demanda kW calculada por simultaneidade empírica,Estimativa de Engenharia,BDGD UCBT_tab + Fator Simultaneidade,E
+LoadShape,Perfis Horários 24h,Curvas normalizadas Dia Útil B1/B3 CPFL Piratininga,Disponível,ANEEL CTR Redes Tipo,D
+PVSystem,23 Usinas Solares BT,"kWp, kVA, FP=1, Curva solar diária",Disponível,BDGD UGBT_tab + INPE,B
+Capacitor,2 Bancos de Capacitores,"Barramento MT, Tensão 13.8 kV, 300 kvar",Disponível,BDGD UNCRMT,B
+Storage (BESS),Proposta de Armazenamento,1.5 MW / 3 MWh na SE e 50 kW nos secundários,Proposto para Estudo,Modelagem Didática / Expansão,F
+Medição Tempo Real,Correntes e Tensões por Minuto,Dados SCADA / AMI minuto a minuto,Ausente Publicamente,Lacuna Operacional da Concessionária,G

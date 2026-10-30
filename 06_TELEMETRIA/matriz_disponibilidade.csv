@@ -1,0 +1,16 @@
+CATEGORIA,NIVEL_DISPONIBILIDADE,QTD_VARIAVEIS
+Armazenamento,Ausente (futuro),2
+Elétrica,Agregado mensal,2
+Elétrica,Ausente,6
+Elétrica,Cadastral estático,1
+Elétrica,Derivado (Classe E),1
+Elétrica,Oficial cadastral (Classe B),1
+Elétrica,Proxy / Referência,1
+Elétrica,Referência sistêmica,1
+Mobilidade Elétrica,Ausente,1
+Mobilidade Elétrica,Estimativa de Engenharia (F),1
+Operacional,Ausente,4
+Operacional,Cadastral estático,2
+Operacional,Oficial agregado (Classe C),1
+Renováveis,Ausente,1
+Renováveis,Oficial cadastral (Classe B),1

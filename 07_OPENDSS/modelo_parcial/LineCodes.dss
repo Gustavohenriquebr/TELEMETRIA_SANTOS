@@ -1,0 +1,22 @@
+! ====================================================================
+! CATALOGO DE CONDUTORES OFICIAIS — ALIMENTADOR STO33 (FONTE: SEGCON)
+! ====================================================================
+New Linecode.PA1107 nphases=3 r1=0.5038 x1=0.3124 r0=1.2595 x0=0.6249 units=km normamps=310.0 emergamps=356.5
+New Linecode.PA6001 nphases=3 r1=0.5038 x1=0.3124 r0=1.2595 x0=0.6248 units=km normamps=310.0 emergamps=356.5
+New Linecode.PA12030 nphases=3 r1=0.5038 x1=0.3124 r0=1.2595 x0=0.6249 units=km normamps=310.0 emergamps=356.5
+New Linecode.PA1146 nphases=3 r1=0.6133 x1=0.4327 r0=1.5333 x0=0.8654 units=km normamps=202.0 emergamps=232.3
+New Linecode.PA1017 nphases=3 r1=0.6133 x1=0.4327 r0=1.5333 x0=0.8654 units=km normamps=202.0 emergamps=232.3
+New Linecode.PA5957 nphases=3 r1=0.1865 x1=0.2747 r0=0.4663 x0=0.5494 units=km normamps=575.0 emergamps=661.2
+New Linecode.PA11270 nphases=3 r1=0.6133 x1=0.4327 r0=1.5333 x0=0.8654 units=km normamps=202.0 emergamps=232.3
+New Linecode.PA1099 nphases=3 r1=0.1865 x1=0.2747 r0=0.4663 x0=0.5494 units=km normamps=575.0 emergamps=661.2
+New Linecode.PA5977 nphases=3 r1=0.1938 x1=0.3881 r0=0.4845 x0=0.7763 units=km normamps=420.0 emergamps=483.0
+New Linecode.PA1027 nphases=3 r1=0.1938 x1=0.3882 r0=0.4845 x0=0.7763 units=km normamps=420.0 emergamps=483.0
+New Linecode.PA5929 nphases=3 r1=0.6133 x1=0.4327 r0=1.5333 x0=0.8654 units=km normamps=202.0 emergamps=232.3
+New Linecode.PA1159 nphases=3 r1=0.3861 x1=0.4153 r0=0.9652 x0=0.8306 units=km normamps=270.0 emergamps=310.5
+New Linecode.PA11265 nphases=3 r1=0.6133 x1=0.4327 r0=1.5333 x0=0.8654 units=km normamps=202.0 emergamps=232.3
+New Linecode.PA1012 nphases=3 r1=0.9745 x1=0.4503 r0=2.4363 x0=0.9007 units=km normamps=151.0 emergamps=173.6
+New Linecode.PA1168 nphases=3 r1=0.1938 x1=0.3881 r0=0.4845 x0=0.7763 units=km normamps=420.0 emergamps=483.0
+New Linecode.PA1166 nphases=3 r1=0.1938 x1=0.3881 r0=0.4845 x0=0.7763 units=km normamps=420.0 emergamps=483.0
+New Linecode.PA5013 nphases=3 r1=0.9745 x1=0.4503 r0=2.4363 x0=0.9007 units=km normamps=151.0 emergamps=173.6
+New Linecode.PA11548 nphases=3 r1=0.1421 x1=0.2654 r0=0.3553 x0=0.5308 units=km normamps=430.0 emergamps=494.5
+New Linecode.PS1113 nphases=3 r1=0.0857 x1=0.2658 r0=0.2142 x0=0.5316 units=km normamps=351.0 emergamps=403.6
