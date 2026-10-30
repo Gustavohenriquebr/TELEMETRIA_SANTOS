@@ -114,6 +114,11 @@ O repositório passou por quatro ciclos rigorosos de auditoria técnica document
 - Auditoria do CAPEX Cenário E: [`08_RELATORIOS/validacao_missao_4/AUDITORIA_CAPEX_CENARIO_E.csv`](08_RELATORIOS/validacao_missao_4/AUDITORIA_CAPEX_CENARIO_E.csv)
 - Classificação Científica dos Cenários: [`08_RELATORIOS/validacao_missao_4/CLASSIFICACAO_VALIDACAO_M4.csv`](08_RELATORIOS/validacao_missao_4/CLASSIFICACAO_VALIDACAO_M4.csv)
 
+### 4.4. Auditoria Técnica e Validação Científica COBRIC 2026 (Auditoria Geral e Final)
+- Relatório Técnico Completo de Auditoria: [`08_RELATORIOS/RELATORIO_AUDITORIA_TECNICA_COBRIC_2026.md`](08_RELATORIOS/RELATORIO_AUDITORIA_TECNICA_COBRIC_2026.md)
+- Síntese de Auditoria: [`08_RELATORIOS/AUDITORIA_TECNICA_FINAL.md`](08_RELATORIOS/AUDITORIA_TECNICA_FINAL.md)
+- Automação Reproduzível de Auditoria: [`09_AUTOMACAO/scripts/executar_auditoria_completa.py`](09_AUTOMACAO/scripts/executar_auditoria_completa.py)
+
 ---
 
 ## 5. Estrutura Completa do Repositório
@@ -235,6 +240,11 @@ python3 08_RELATORIOS/validacao_missao_3/executar_missao_3.py
 ### 6.4. Executar o Orquestrador da Missão 4 (Elemento Nativo Storage e Auditoria de CAPEX)
 ```bash
 python3 08_RELATORIOS/validacao_missao_4/executar_missao_4.py
+```
+
+### 6.5. Executar a Automação de Auditoria Científica Completa (COBRIC 2026)
+```bash
+python3 09_AUTOMACAO/scripts/executar_auditoria_completa.py
 ```
 
 ---

@@ -2,6 +2,11 @@
 ## Alimentador STO33 — Geração distribuída, OpenDSS e Missão 4
 
 **Escopo:** auditoria documental e de consistência dos dados e arquivos versionados.
+
+**Relatório Técnico Exaustivo de 15 Seções:** [`08_RELATORIOS/RELATORIO_AUDITORIA_TECNICA_COBRIC_2026.md`](RELATORIO_AUDITORIA_TECNICA_COBRIC_2026.md)
+
+**Automação Reproduzível de Auditoria:** [`09_AUTOMACAO/scripts/executar_auditoria_completa.py`](../09_AUTOMACAO/scripts/executar_auditoria_completa.py)
+
 **Commit de referência:** `cffd62a90599d08875b2479ac752210f86721680`.
 
 ## 1. Síntese executiva
