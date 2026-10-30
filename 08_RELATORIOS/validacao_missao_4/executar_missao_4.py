@@ -225,135 +225,146 @@ def run_all_scenarios():
 
     return df_summary, df_all_hourly, df_trafos, df_bess
 
-def execute_physical_tests(df_bess, df_summary):
-    """
-    Executa os 10 testes de integridade física exigidos pela Missão 4.
-    """
-    tests = []
 
+def build_bess_power_and_energy_reports(df_bess):
+    """
+    Gera os relatórios de potência e energia a partir da telemetria dos
+    monitores Storage. Convenção adotada: carga negativa; descarga positiva.
+    Os despachos esperados espelham os LoadShapes dos arquivos DSS.
+    """
+    eta_c = 0.95
+    eta_d = 0.95
+    schedules = {
+        'BESS_SE': [0, -450, -450, -450, -450, 0, 0, 0, 0, 0, 0, -250, -160.53, 0, 0, 0, 0, 0, 700, 950, 550, 0, 0, 0],
+        'BESS_DIST_1193581': [0, -25, -25, -25, 0, 0, 0, 0, 0, 0, 0, -20, -15.53, 0, 0, 0, 0, 0, 35, 45, 30, 0, 0, 0],
+        'BESS_DIST_1193923': [0, -25, -25, -25, 0, 0, 0, 0, 0, 0, 0, -20, -15.53, 0, 0, 0, 0, 0, 35, 45, 30, 0, 0, 0],
+        'BESS_DIST_1193996': [0, -25, -25, -25, 0, 0, 0, 0, 0, 0, 0, -20, -15.53, 0, 0, 0, 0, 0, 35, 45, 30, 0, 0, 0]
+    }
+    power_rows, energy_rows = [], []
+    for bname, grp in df_bess.groupby('BESS_NAME'):
+        grp = grp.sort_values('HORA')
+        if len(grp) != 24:
+            raise RuntimeError(f'{bname}: esperado 24 amostras do monitor; recebidas {len(grp)}.')
+        schedule = schedules[bname]
+        for _, r in grp.iterrows():
+            h = int(r['HORA'])
+            p_meas = float(r['POTENCIA_AC_KW'])
+            p_req = float(schedule[h - 1])
+            e_start = float(r['ENERGIA_ARMAZENADA_KWH'])
+            if p_meas < -0.01:
+                e_charge_ac = abs(p_meas)
+                e_discharge_ac = 0.0
+                e_end = e_start + e_charge_ac * eta_c
+                losses = e_charge_ac * (1.0 - eta_c)
+            elif p_meas > 0.01:
+                e_charge_ac = 0.0
+                e_discharge_ac = p_meas
+                e_end = e_start - e_discharge_ac / eta_d
+                losses = e_discharge_ac * (1.0 / eta_d - 1.0)
+            else:
+                e_charge_ac = e_discharge_ac = losses = 0.0
+                e_end = e_start
+            soc_start = 100.0 * e_start / float(r['CAPACIDADE_NOMINAL_KWH'])
+            soc_end = 100.0 * e_end / float(r['CAPACIDADE_NOMINAL_KWH'])
+            power_rows.append({
+                'CENARIO': r['CENARIO'], 'HORA': h, 'BESS_NAME': bname,
+                'P_REQUESTED_KW': p_req, 'P_AC_PYTHON_KW': p_req,
+                'P_AC_OPENDSS_KW': round(p_meas, 4),
+                'DELTA_KW': round(p_meas - p_req, 4),
+                'STATE': r['STATE_NAME'], 'SOC_INICIO_PCT': round(soc_start, 3),
+                'SOC_FIM_PCT': round(soc_end, 3),
+                'E_ARMAZENADA_KWH': round(e_start, 4),
+                'ENERGIA_CARGA_KWH': round(e_charge_ac, 4),
+                'ENERGIA_DESCARGA_KWH': round(e_discharge_ac, 4),
+                'PERDAS_CONV_KWH': round(losses, 4)
+            })
+            energy_rows.append({
+                'CENARIO': r['CENARIO'], 'HORA': h, 'BESS_NAME': bname,
+                'ENERGIA_INICIAL_KWH': round(e_start, 4),
+                'ENERGIA_CARGA_AC_KWH': round(e_charge_ac, 4),
+                'ENERGIA_DESCARGA_AC_KWH': round(e_discharge_ac, 4),
+                'PERDAS_CONVERSAO_KWH': round(losses, 4),
+                'ENERGIA_FINAL_ESTIMADA_KWH': round(e_end, 4),
+                'SOC_INICIAL_PCT': round(soc_start, 3),
+                'SOC_FINAL_ESTIMADO_PCT': round(soc_end, 3),
+                'OBSERVACAO': 'Energia final estimada pelo despacho medido e eficiencia nominal de 95%; monitor mode=3 registra estado no instante de amostragem.'
+            })
+    return pd.DataFrame(power_rows), pd.DataFrame(energy_rows)
+
+def execute_physical_tests(df_bess, df_summary, df_trafos, df_power):
+    """Testes com evidência observável; itens não medidos ficam inconclusivos."""
+    tests = []
     for bname, grp in df_bess.groupby('BESS_NAME'):
         sc = grp['CENARIO'].iloc[0]
-        kwh_nom = grp['CAPACIDADE_NOMINAL_KWH'].iloc[0]
-        kw_nom = grp['POTENCIA_NOMINAL_KW'].iloc[0]
+        pg = df_power[df_power['BESS_NAME'] == bname].sort_values('HORA')
+        kw_nom = float(grp['POTENCIA_NOMINAL_KW'].iloc[0])
+        soc_values = pd.concat([pg['SOC_INICIO_PCT'], pg['SOC_FIM_PCT']])
+        soc_min, soc_max = float(soc_values.min()), float(soc_values.max())
+        p_max = float(pg['P_AC_OPENDSS_KW'].abs().max())
+        t1 = soc_min >= 9.99 and soc_max <= 90.01
+        t2 = bool(((pg.loc[pg['STATE'] == 'DISCHARGING', 'SOC_FIM_PCT'] >= 9.99)).all())
+        t3 = bool(((pg.loc[pg['STATE'] == 'CHARGING', 'SOC_FIM_PCT'] <= 90.01)).all())
+        t4 = p_max <= kw_nom + 0.01
+        state_sign_ok = (
+            ((pg['STATE'] == 'CHARGING') & (pg['P_AC_OPENDSS_KW'] < -0.01)) |
+            ((pg['STATE'] == 'DISCHARGING') & (pg['P_AC_OPENDSS_KW'] > 0.01)) |
+            ((pg['STATE'] == 'IDLING') & (pg['P_AC_OPENDSS_KW'].abs() <= 0.01))
+        )
+        t10 = bool(state_sign_ok.all())
+        delta_soc = abs(float(pg['SOC_FIM_PCT'].iloc[-1]) - float(pg['SOC_INICIO_PCT'].iloc[0]))
+        for name, ok, evidence in [
+            ('T1 - Limites operacionais de SOC', t1, f'SOC observado/estimado entre {soc_min:.2f}% e {soc_max:.2f}%.'),
+            ('T2 - Bloqueio de descarga no SOC minimo', t2, 'SOC final estimado de cada intervalo de descarga >= 10%.'),
+            ('T3 - Bloqueio de carga no SOC maximo', t3, 'SOC final estimado de cada intervalo de carga <= 90%.'),
+            ('T4 - Potencia nominal do inversor', t4, f'Pico medido={p_max:.3f} kW; nominal={kw_nom:.2f} kW.'),
+            ('T10 - Consistencia entre estado e sinal', t10, 'Estado CHARGING exige P negativa; DISCHARGING P positiva; IDLING proximo de zero.')
+        ]:
+            tests.append({'TESTE': name, 'SISTEMA': bname, 'CENARIO': sc,
+                          'STATUS': 'APROVADO' if ok else 'REPROVADO', 'EVIDENCIA': evidence})
 
-        # Teste 1: SOC dentro dos limites [10%, 90%]
-        soc_min = grp['SOC_PCT'].min()
-        soc_max = grp['SOC_PCT'].max()
-        t1_ok = (soc_min >= 9.99) and (soc_max <= 90.01)
+        # Um único dia que começa e termina com SOC diferente não permite medir
+        # eficiência round-trip de ciclo fechado nem provar repetibilidade diária.
         tests.append({
-            'TESTE': 'T1 - Limites Operacionais de SOC',
-            'SISTEMA': bname,
-            'CENARIO': sc,
-            'STATUS': 'APROVADO' if t1_ok else 'REPROVADO',
-            'EVIDENCIA': f'SOC min={soc_min:.2f}%, SOC max={soc_max:.2f}% (Faixa permitida: 10% a 90%)'
+            'TESTE': 'T5 - Eficiencia round-trip e balanco de ciclo',
+            'SISTEMA': bname, 'CENARIO': sc,
+            'STATUS': 'INCONCLUSIVO',
+            'EVIDENCIA': f'Delta SOC no dia={delta_soc:.2f} pontos percentuais. Eficiência nominal configurada=90,25%; eficiência round-trip medida exige ciclo fechado.'
+        })
+        tests.append({
+            'TESTE': 'T6 - Repetibilidade diaria do SOC',
+            'SISTEMA': bname, 'CENARIO': sc,
+            'STATUS': 'INCONCLUSIVO' if delta_soc > 0.5 else 'APROVADO',
+            'EVIDENCIA': f'Delta entre SOC inicial e final estimado={delta_soc:.2f} pp; um único dia não demonstra repetibilidade em dias sucessivos.'
+        })
+        tests.append({
+            'TESTE': 'T8 - Balanco eletrico nodal independente (LKC)',
+            'SISTEMA': bname, 'CENARIO': sc,
+            'STATUS': 'NAO AVALIADO',
+            'EVIDENCIA': 'O script não calcula resíduos nodais independentes; convergência do solver, isoladamente, não comprova este teste.'
         })
 
-        # Teste 2: Nenhuma descarga sem energia disponível (SOC > 10%)
-        disch_rows = grp[grp['STATE_NAME'] == 'DISCHARGING']
-        t2_ok = True
-        for _, r in disch_rows.iterrows():
-            if r['SOC_PCT'] <= 9.99:
-                t2_ok = False
-        tests.append({
-            'TESTE': 'T2 - Bloqueio de Descarga em SOC Minimo',
-            'SISTEMA': bname,
-            'CENARIO': sc,
-            'STATUS': 'APROVADO' if t2_ok else 'REPROVADO',
-            'EVIDENCIA': f'Nenhuma descarga executada com SOC <= 10%. Horas de descarga: {list(disch_rows["HORA"])}'
-        })
-
-        # Teste 3: Nenhuma recarga acima da capacidade disponível (SOC <= 90%)
-        chg_rows = grp[grp['STATE_NAME'] == 'CHARGING']
-        t3_ok = True
-        for _, r in chg_rows.iterrows():
-            if r['SOC_PCT'] > 90.01:
-                t3_ok = False
-        tests.append({
-            'TESTE': 'T3 - Bloqueio de Carga em SOC Maximo',
-            'SISTEMA': bname,
-            'CENARIO': sc,
-            'STATUS': 'APROVADO' if t3_ok else 'REPROVADO',
-            'EVIDENCIA': f'Nenhuma recarga permitida acima de 90%. Max SOC registrado = {soc_max:.2f}%'
-        })
-
-        # Teste 4: Potência dentro dos limites nominais
-        p_max = grp['POTENCIA_AC_KW'].abs().max()
-        t4_ok = p_max <= kw_nom + 0.01
-        tests.append({
-            'TESTE': 'T4 - Potencia Maxima de Inversor',
-            'SISTEMA': bname,
-            'CENARIO': sc,
-            'STATUS': 'APROVADO' if t4_ok else 'REPROVADO',
-            'EVIDENCIA': f'P_max={p_max:.2f} kW <= Potencia Nominal={kw_nom:.2f} kW'
-        })
-
-        # Teste 5: Balanço de energia e eficiências de conversão
-        e_chg_ac = chg_rows['POTENCIA_AC_KW'].abs().sum()
-        e_dis_ac = disch_rows['POTENCIA_AC_KW'].abs().sum()
-        # Eficiência de ida e volta do ciclo
-        eta_roundtrip = (e_dis_ac / e_chg_ac) if e_chg_ac > 0 else 0.0
-        delta_stored = grp["ENERGIA_ARMAZENADA_KWH"].iloc[-1] - grp["ENERGIA_ARMAZENADA_KWH"].iloc[0]
-        perdas_internas = e_chg_ac - e_dis_ac + delta_stored
-        tests.append({
-            'TESTE': 'T5 - Balanço Energetico e Eficiencia Round-Trip',
-            'SISTEMA': bname,
-            'CENARIO': sc,
-            'STATUS': 'APROVADO',
-            'EVIDENCIA': f'Carga AC={e_chg_ac:.2f} kWh, Descarga AC={e_dis_ac:.2f} kWh, Perdas internas={abs(perdas_internas):.2f} kWh (eta_RT={eta_roundtrip*100:.2f}%)'
-        })
-
-        # Teste 6: SOC cíclico / Repetibilidade diária
-        soc_ini = grp['SOC_PCT'].iloc[0]
-        soc_fim = grp['SOC_PCT'].iloc[-1]
-        delta_soc = abs(soc_fim - soc_ini)
-        # O ciclo parte de 20% e encerra em 12,81% (reserva estratégica para dia seguinte com carga noturna)
-        t6_ok = delta_soc <= 10.0
-        tests.append({
-            'TESTE': 'T6 - Coerencia do Ciclo Diario de SOC',
-            'SISTEMA': bname,
-            'CENARIO': sc,
-            'STATUS': 'APROVADO COM RESSALVA' if delta_soc > 5.0 else 'APROVADO',
-            'EVIDENCIA': f'SOC_inicial={soc_ini:.2f}%, SOC_final={soc_fim:.2f}% (Delta = {delta_soc:.2f} pp, reinicia carga as 02h)'
-        })
-
-        # Teste 8: Balanço elétrico da barra
-        tests.append({
-            'TESTE': 'T8 - Balanço Eletrico Nodal (LKC)',
-            'SISTEMA': bname,
-            'CENARIO': sc,
-            'STATUS': 'APROVADO',
-            'EVIDENCIA': 'Primeira Lei de Kirchhoff satisfeita em todas as barras pelo solver OpenDSS'
-        })
-
-        # Teste 10: Sem dupla contagem
-        overlap = ((grp['POTENCIA_AC_KW'] > 0.01) & (grp['POTENCIA_AC_KW'] < -0.01)).any()
-        tests.append({
-            'TESTE': 'T10 - Ausencia de Dupla Contagem',
-            'SISTEMA': bname,
-            'CENARIO': sc,
-            'STATUS': 'APROVADO' if not overlap else 'REPROVADO',
-            'EVIDENCIA': 'Estados de carga e descarga mutuamente exclusivos em todos os intervalos horários'
-        })
-
-    # Teste 7: Convergência 24h
-    conv_all = df_summary['CONVERGENCIA_24H'].all()
+    conv_all = bool(df_summary['CONVERGENCIA_24H'].all())
     tests.append({
-        'TESTE': 'T7 - Convergencia do Fluxo de Potencia',
-        'SISTEMA': 'REDE_STO33',
-        'CENARIO': 'TODOS OS 5 CENARIOS',
+        'TESTE': 'T7 - Convergencia do fluxo de potencia',
+        'SISTEMA': 'REDE_STO33', 'CENARIO': 'TODOS OS 5 CENARIOS',
         'STATUS': 'APROVADO' if conv_all else 'REPROVADO',
-        'EVIDENCIA': 'Convergencia alcancada em 100% dos 120 intervalos horarios (5 cenarios x 24h)'
+        'EVIDENCIA': f"{int(df_summary['CONVERGENCIA_24H'].sum())} de {len(df_summary) * 24 // len(df_summary)} cenários? Convergência horária registrada por cenário."
     })
 
-    # Teste 9: Carregamento de condutores e transformadores
+    if not df_trafos.empty:
+        max_row = df_trafos.loc[df_trafos['CARREGAMENTO_PCT'].idxmax()]
+        thermal_ok = bool((df_trafos['CARREGAMENTO_PCT'] <= 100.0).all())
+        thermal_evidence = (f"Maior carregamento de transformador={max_row['CARREGAMENTO_PCT']:.2f}% "
+                            f"({max_row['TRAFO']}, {max_row['CENARIO']}, hora {int(max_row['HORA'])}). "
+                            "Ampacidade de linhas não foi avaliada por este teste.")
+    else:
+        thermal_ok, thermal_evidence = False, 'Dados de carregamento de transformadores ausentes.'
     tests.append({
-        'TESTE': 'T9 - Carregamento Termico de Equipamentos',
-        'SISTEMA': 'TRANSFORMADORES_E_LINHAS',
-        'CENARIO': 'TODOS OS 5 CENARIOS',
-        'STATUS': 'APROVADO',
-        'EVIDENCIA': 'Correntes e potencias aparentes registradas em todos os transformadores e trechos de linha'
+        'TESTE': 'T9 - Carregamento termico de transformadores',
+        'SISTEMA': 'TRANSFORMADORES', 'CENARIO': 'TODOS OS 5 CENARIOS',
+        'STATUS': 'APROVADO' if thermal_ok else 'REPROVADO',
+        'EVIDENCIA': thermal_evidence
     })
-
     return pd.DataFrame(tests)
 
 def audit_capex():
@@ -398,37 +409,21 @@ def audit_capex():
     return df_capex, capex_total, delta_capex
 
 def classify_scenarios(df_summary, df_tests):
-    """
-    Classifica cada um dos 5 cenários com base nas evidências reproduzíveis.
-    """
-    classif = [
-        {
-            'CENARIO': 'Cenário A (Baseline)',
-            'CLASSIFICACAO': 'VALIDADO',
-            'JUSTIFICATIVA': 'Convergência 100%, dados solares oficiais ANEEL (195,89 kW), fluxo de potência calibrado com BDGD.'
-        },
-        {
-            'CENARIO': 'Cenário B (FV + VE)',
-            'CLASSIFICACAO': 'VALIDADO',
-            'JUSTIFICATIVA': 'Convergência 100%, 100 VEs distribuídos com perfil real de recarga noturna e expansão solar modelada.'
-        },
-        {
-            'CENARIO': 'Cenário C (BESS Centralizado)',
-            'CLASSIFICACAO': 'VALIDADO COM RESSALVAS',
-            'JUSTIFICATIVA': 'Modelo nativo Storage validado, limites de SOC estritamente respeitados. Ressalva técnica mandatória: BESS Central alivia demanda de pico na subestação, mas NÃO resolve sobrecarga térmica nos transformadores locais de baixa tensão.'
-        },
-        {
-            'CENARIO': 'Cenário D (BESS Distribuído)',
-            'CLASSIFICACAO': 'VALIDADO',
-            'JUSTIFICATIVA': '3 unidades nativas Storage operando na baixa tensão dos transformadores críticos. Redução comprovada do carregamento do TR_1193581 de 94,67% para 54,58% e alívio de perdas Joulicas locais.'
-        },
-        {
-            'CENARIO': 'Cenário E (Reforço Físico)',
-            'CLASSIFICACAO': 'VALIDADO',
-            'JUSTIFICATIVA': 'Recondutoramento de 5,247 km e upgrade de 3 transformadores simulados no OpenDSS com convergência 100%. CAPEX auditado e corrigido para R$ 624.511,55.'
-        }
-    ]
-    return pd.DataFrame(classif)
+    """Classificação conservadora baseada na convergência efetivamente registrada."""
+    rows = []
+    for _, r in df_summary.iterrows():
+        converged = bool(r['CONVERGENCIA_24H'])
+        rows.append({
+            'CENARIO': r['CENARIO'],
+            'CLASSIFICACAO': 'SIMULACAO EXECUTADA - CONVERGENCIA OK' if converged else 'SIMULACAO COM FALHA DE CONVERGENCIA',
+            'JUSTIFICATIVA': (
+                'Fluxo diário convergiu nos 24 passos registrados. Isto comprova execução numérica, '
+                'não validação externa dos dados, calibração ou adequação operacional.'
+                if converged else
+                'Um ou mais passos não convergiram; resultados do cenário não devem ser tratados como validados.'
+            )
+        })
+    return pd.DataFrame(rows)
 
 def main():
     print("█" * 80)
@@ -440,29 +435,35 @@ def main():
     # 1. Executar os 5 cenários
     df_summary, df_hourly, df_trafos, df_bess = run_all_scenarios()
 
-    # 2. Executar testes de validação física
-    print("\nExecutando 10 testes de validação física...")
-    df_tests = execute_physical_tests(df_bess, df_summary)
+    # 2. Gerar comparacao de potencia e balanco energetico a partir dos monitores
+    print("\nGerando relatorios de potencia e energia dos BESS...")
+    df_bess_power, df_bess_energy = build_bess_power_and_energy_reports(df_bess)
 
-    # 3. Auditoria do CAPEX
+    # 3. Executar testes com dados efetivamente medidos
+    print("Executando testes de validacao fisica...")
+    df_tests = execute_physical_tests(df_bess, df_summary, df_trafos, df_bess_power)
+
+    # 4. Auditoria do CAPEX
     print("Executando auditoria do CAPEX Cenário E...")
     df_capex, capex_corrigido, delta_capex = audit_capex()
 
-    # 4. Classificação dos cenários
+    # 5. Classificação dos cenários
     print("Classificando os cenários...")
     df_classif = classify_scenarios(df_summary, df_tests)
 
-    # 5. Salvar arquivos em validacao_missao_4
+    # 6. Salvar arquivos em validacao_missao_4
     print("\nSalvando arquivos de auditoria em 08_RELATORIOS/validacao_missao_4/...")
     df_summary.to_csv(os.path.join(OUTPUT_DIR, 'RESULTADOS_CENARIOS_COBRIC_M4.csv'), index=False)
     df_hourly.to_csv(os.path.join(OUTPUT_DIR, 'CURVAS_HORARIAS_COBRIC_M4.csv'), index=False)
     df_trafos.to_csv(os.path.join(OUTPUT_DIR, 'CARREGAMENTO_TRAFOS_M4.csv'), index=False)
     df_bess.to_csv(os.path.join(OUTPUT_DIR, 'BESS_ESTADO_INTERNO_M4.csv'), index=False)
+    df_bess_power.to_csv(os.path.join(OUTPUT_DIR, 'BESS_POTENCIA_OPENDSS_M4.csv'), index=False)
+    df_bess_energy.to_csv(os.path.join(OUTPUT_DIR, 'BESS_BALANCO_ENERGETICO_M4.csv'), index=False)
     df_tests.to_csv(os.path.join(OUTPUT_DIR, 'BESS_TESTES_VALIDACAO_M4.csv'), index=False)
     df_capex.to_csv(os.path.join(OUTPUT_DIR, 'AUDITORIA_CAPEX_CENARIO_E.csv'), index=False)
     df_classif.to_csv(os.path.join(OUTPUT_DIR, 'CLASSIFICACAO_VALIDACAO_M4.csv'), index=False)
 
-    # 6. Atualizar arquivos consolidados do repositório
+    # 7. Atualizar arquivos consolidados do repositório
     print("Atualizando arquivos consolidados em 08_RELATORIOS/...")
     df_summary.to_csv(os.path.join(REPORTS_DIR, 'RESULTADOS_CENARIOS_COBRIC.csv'), index=False)
     df_hourly.to_csv(os.path.join(REPORTS_DIR, 'CURVAS_HORARIAS_CENARIOS_COBRIC.csv'), index=False)
