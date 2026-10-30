@@ -1,0 +1,15 @@
+! ====================================================================
+! CENARIO C: BESS CENTRALIZADO NA SUBESTACAO SANTOS 1 (1.5 MW / 3.0 MWh)
+! ====================================================================
+Redirect "Cenario_B_Expansao_FV_VE.dss"
+
+! Curva de despacho do BESS Centralizado (24 horas, intervalo 1h)
+! Valores negativos = Carga / Recarga da bateria (absorvendo da rede)
+! Valores positivos = Descarga / Peak Shaving (injetando na rede)
+! Carga noturna (02h-04h @ 500 kW), Recarga solar (12h-13h @ 400 kW)
+! Descarga ponta (18h @ 500 kW, 19h-21h @ 1000 kW)
+New Loadshape.BESS_SE_Shape npts=24 interval=1.0 mult=[0.0 -0.5 -0.5 -0.5 0.0 0.0 0.0 0.0 0.0 0.0 0.0 -0.4 -0.4 0.0 0.0 0.0 0.0 0.5 1.0 1.0 1.0 0.0 0.0 0.0]
+
+! BESS Centralizado modelado na barra de 13.8 kV da Subestacao STO (1.000 kW nominal despacho, 1.500 kW / 3.000 kWh capacidade)
+New Generator.BESS_SE phases=3 bus1=MT_STO33_346.1.2.3 kv=13.8 kw=1000 pf=1.0 model=1 daily=BESS_SE_Shape
+New Monitor.Mon_BESS_SE element=Generator.BESS_SE terminal=1 mode=1

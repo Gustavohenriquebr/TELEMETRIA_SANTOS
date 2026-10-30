@@ -87,7 +87,7 @@ O alimentador utiliza 19 códigos distintos de condutores, todos com parâmetros
 
 ### 4.2 Transformadores de Distribuição MT/BT (Fonte: UNTRMT / EQTRMT)
 - **Total de Unidades:** 105 transformadores.
-- **Potência Instalada Acumulada:** 14.293 kVA.
+- **Potência Instalada Acumulada:** 14.318 kVA.
 - **Distribuição de Capacidades:**
   - 300 kVA: 10 unidades (3.000 kVA)
   - 225 kVA: 8 unidades (1.800 kVA)
@@ -95,7 +95,7 @@ O alimentador utiliza 19 códigos distintos de condutores, todos com parâmetros
   - 112,5 kVA: 22 unidades (2.475 kVA)
   - 75 kVA: 23 unidades (1.725 kVA)
   - 45 kVA: 4 unidades (180 kVA)
-  - Menores (15 a 30 kVA): 5 unidades (163 kVA)
+  - Menores (15 a 88 kVA): 5 unidades (188 kVA: 88, 30, 30, 25 e 15 kVA)
 - **Tensão Secundária:** 220/127 V trifásico a 4 fios (`ABCN`).
 
 ---
@@ -146,13 +146,13 @@ A tabela abaixo lista os postos de transformação com maior criticidade térmic
 
 ### 7.1 Levantamento Municipal e do Circuito
 - **Santos (Geral):** 1.342 usinas solares homologadas na ANEEL, com **16,89 MWp** instalados.
-- **Alimentador STO33:** 23 usinas solares cadastradas na baixa tensão (`UGBT_tab`), somando **44,35 kWp**.
-- **Potência Média por Instalação no STO33:** 1,93 kWp (microgeração residencial unifamiliar ou pequenos comércios).
+- **Alimentador STO33:** 23 usinas solares cadastradas na baixa tensão (`UGBT_tab`), somando **195,89 kW** na base oficial ANEEL MMGD (44,35 kW cadastrado na BDGD).
+- **Potência Média por Instalação no STO33:** 8,52 kW (faixa de microgeração residencial e comercial).
 
 ### 7.2 Análise de Fluxo Reverso
-Com a geração solar máxima simultânea estimada em **38 kWp** ao meio-dia e a demanda mínima diurna do alimentador superando **1.500 kW**, a geração solar local representa apenas **2,5% da carga mínima**. Conclui-se que:
-1. **Não há risco de fluxo reverso de potência na subestação**.
-2. A geração solar atual desempenha papel benéfico de redução marginal de perdas durante o horário diurno.
+Com a geração solar máxima simultânea estimada em **170 kW** ao meio-dia e a demanda mínima diurna do alimentador em torno de **658 kW**, a geração solar local representa cerca de **25,8% da carga mínima**. Conclui-se que:
+1. **Não há risco de fluxo reverso de potência na subestação** no cenário baseline.
+2. A geração solar atual desempenha papel benéfico de alívio térmico diurno e suporte de tensão.
 3. Eventuais sobretensões locais ficam restritas a consumidores no final de ramais longos de baixa tensão caso a impedância de curto-circuito local seja elevada.
 
 ---

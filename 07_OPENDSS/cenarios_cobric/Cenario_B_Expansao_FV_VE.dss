@@ -1,0 +1,51 @@
+! ====================================================================
+! CENARIO B: EXPANSAO FV (+100%) + ELETROMOBILIDADE (100 VEs / 740 kW)
+! ====================================================================
+Redirect "Cenario_A_Baseline.dss"
+
+! --- EXPANSAO FOTOVOLTAICA (+195.89 kW) ---
+New PVSystem.PV_EXP_0 phases=3 bus1=BT_STO33_BT_STO33_1147083.1.2.3 conn=wye kv=0.22 pmpp=3.00 kVA=3.30 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_EXP_1 phases=3 bus1=BT_STO33_BT_STO33_1145098.1.2.3 conn=wye kv=0.22 pmpp=9.90 kVA=10.89 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_EXP_2 phases=3 bus1=BT_STO33_BT_STO33_1131361.1.2.3 conn=wye kv=0.22 pmpp=6.60 kVA=7.26 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_EXP_3 phases=3 bus1=BT_STO33_BT_STO33_1675199.1.2.3 conn=wye kv=0.22 pmpp=4.00 kVA=4.40 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_EXP_4 phases=3 bus1=BT_STO33_BT_STO33_1143042.1.2.3 conn=wye kv=0.22 pmpp=20.00 kVA=22.00 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_EXP_5 phases=3 bus1=BT_STO33_BT_STO33_1114759.1.2.3 conn=wye kv=0.22 pmpp=8.00 kVA=8.80 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_EXP_6 phases=3 bus1=BT_STO33_BT_STO33_1322758.1.2.3 conn=wye kv=0.22 pmpp=10.00 kVA=11.00 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_EXP_7 phases=3 bus1=BT_STO33_BT_STO33_1421119.1.2.3 conn=wye kv=0.22 pmpp=5.00 kVA=5.50 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_EXP_8 phases=3 bus1=BT_STO33_BT_STO33_1563560.1.2.3 conn=wye kv=0.22 pmpp=20.00 kVA=22.00 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_EXP_9 phases=3 bus1=BT_STO33_BT_STO33_1422063.1.2.3 conn=wye kv=0.22 pmpp=6.60 kVA=7.26 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_EXP_10 phases=3 bus1=BT_STO33_BT_STO33_1497079.1.2.3 conn=wye kv=0.22 pmpp=10.00 kVA=11.00 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_EXP_11 phases=3 bus1=BT_STO33_BT_STO33_1611047.1.2.3 conn=wye kv=0.22 pmpp=4.00 kVA=4.40 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_EXP_12 phases=3 bus1=BT_STO33_BT_STO33_1421063.1.2.3 conn=wye kv=0.22 pmpp=30.00 kVA=33.00 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_EXP_13 phases=3 bus1=BT_STO33_BT_STO33_1421064.1.2.3 conn=wye kv=0.22 pmpp=4.00 kVA=4.40 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_EXP_14 phases=3 bus1=BT_STO33_BT_STO33_1111128.1.2.3 conn=wye kv=0.22 pmpp=5.50 kVA=6.05 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_EXP_15 phases=3 bus1=BT_STO33_BT_STO33_1107906.1.2.3 conn=wye kv=0.22 pmpp=7.00 kVA=7.70 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_EXP_16 phases=3 bus1=BT_STO33_BT_STO33_1112392.1.2.3 conn=wye kv=0.22 pmpp=4.05 kVA=4.46 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_EXP_17 phases=3 bus1=BT_STO33_BT_STO33_1109881.1.2.3 conn=wye kv=0.22 pmpp=8.00 kVA=8.80 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_EXP_18 phases=3 bus1=BT_STO33_BT_STO33_1113558.1.2.3 conn=wye kv=0.22 pmpp=3.30 kVA=3.63 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_EXP_19 phases=3 bus1=BT_STO33_BT_STO33_1390592.1.2.3 conn=wye kv=0.22 pmpp=5.64 kVA=6.20 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_EXP_20 phases=3 bus1=BT_STO33_BT_STO33_1109515.1.2.3 conn=wye kv=0.22 pmpp=5.00 kVA=5.50 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_EXP_21 phases=3 bus1=BT_STO33_BT_STO33_1112953.1.2.3 conn=wye kv=0.22 pmpp=8.80 kVA=9.68 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_EXP_22 phases=3 bus1=BT_STO33_BT_STO33_1541476.1.2.3 conn=wye kv=0.22 pmpp=7.50 kVA=8.25 pf=1.0 daily=PerfilSolar irradiance=1.0
+
+! --- 100 CARREGADORES DE VEICULOS ELETRICOS (7.4 kW cada) ---
+New Load.VE_1193581 phases=3 bus1=BT_STO33_30362.1.2.3 conn=wye kv=0.22 kw=37.00 pf=0.98 model=1 daily=PerfilVE
+New Load.VE_1193923 phases=3 bus1=BT_STO33_30651.1.2.3 conn=wye kv=0.22 kw=37.00 pf=0.98 model=1 daily=PerfilVE
+New Load.VE_1193996 phases=3 bus1=BT_STO33_30717.1.2.3 conn=wye kv=0.22 kw=37.00 pf=0.98 model=1 daily=PerfilVE
+New Load.VE_48964485 phases=3 bus1=BT_STO33_38814.1.2.3 conn=wye kv=0.22 kw=37.00 pf=0.98 model=1 daily=PerfilVE
+New Load.VE_1194686 phases=3 bus1=BT_STO33_31308.1.2.3 conn=wye kv=0.22 kw=37.00 pf=0.98 model=1 daily=PerfilVE
+New Load.VE_1193968 phases=3 bus1=BT_STO33_30691.1.2.3 conn=wye kv=0.22 kw=37.00 pf=0.98 model=1 daily=PerfilVE
+New Load.VE_1194753 phases=3 bus1=BT_STO33_31369.1.2.3 conn=wye kv=0.22 kw=37.00 pf=0.98 model=1 daily=PerfilVE
+New Load.VE_1193605 phases=3 bus1=BT_STO33_30383.1.2.3 conn=wye kv=0.22 kw=37.00 pf=0.98 model=1 daily=PerfilVE
+New Load.VE_1194787 phases=3 bus1=BT_STO33_31400.1.2.3 conn=wye kv=0.22 kw=37.00 pf=0.98 model=1 daily=PerfilVE
+New Load.VE_1193741 phases=3 bus1=BT_STO33_30499.1.2.3 conn=wye kv=0.22 kw=37.00 pf=0.98 model=1 daily=PerfilVE
+New Load.VE_1193668 phases=3 bus1=BT_STO33_30439.1.2.3 conn=wye kv=0.22 kw=37.00 pf=0.98 model=1 daily=PerfilVE
+New Load.VE_1194034 phases=3 bus1=BT_STO33_30747.1.2.3 conn=wye kv=0.22 kw=37.00 pf=0.98 model=1 daily=PerfilVE
+New Load.VE_1194762 phases=3 bus1=BT_STO33_31377.1.2.3 conn=wye kv=0.22 kw=37.00 pf=0.98 model=1 daily=PerfilVE
+New Load.VE_1194869 phases=3 bus1=BT_STO33_31473.1.2.3 conn=wye kv=0.22 kw=37.00 pf=0.98 model=1 daily=PerfilVE
+New Load.VE_291021754 phases=3 bus1=BT_STO33_51307.1.2.3 conn=wye kv=0.22 kw=37.00 pf=0.98 model=1 daily=PerfilVE
+New Load.VE_144583359 phases=3 bus1=BT_STO33_42137.1.2.3 conn=wye kv=0.22 kw=37.00 pf=0.98 model=1 daily=PerfilVE
+New Load.VE_48964495 phases=3 bus1=BT_STO33_38815.1.2.3 conn=wye kv=0.22 kw=37.00 pf=0.98 model=1 daily=PerfilVE
+New Load.VE_1193760 phases=3 bus1=BT_STO33_30515.1.2.3 conn=wye kv=0.22 kw=37.00 pf=0.98 model=1 daily=PerfilVE
+New Load.VE_22556458 phases=3 bus1=BT_STO33_37496.1.2.3 conn=wye kv=0.22 kw=37.00 pf=0.98 model=1 daily=PerfilVE
+New Load.VE_327211446 phases=3 bus1=BT_STO33_53800.1.2.3 conn=wye kv=0.22 kw=37.00 pf=0.98 model=1 daily=PerfilVE

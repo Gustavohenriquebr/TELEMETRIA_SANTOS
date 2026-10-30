@@ -12,7 +12,7 @@
 ## RESPOSTAS DIRETAS ÀS 20 PERGUNTAS OBRIGATÓRIAS
 
 ### 1. O que sabemos efetivamente sobre o STO33?
-Sabemos que o STO33 é um circuito radial de distribuição urbana de média tensão (13,8 kV) em topologia aérea e trechos de transição subterrânea, com extensão física total de **19,37 km** (730 segmentos de linha), atendendo **6.499 unidades consumidoras de baixa tensão (UCBT)** e 7 unidades consumidoras de média tensão (UCMT). Possui **105 transformadores de distribuição MT/BT** totalizando **14.293 kVA** de capacidade instalada, **86 chaves seccionadoras**, **2 bancos de capacitores** de MT e **23 sistemas de microgeração solar fotovoltaica** conectados na BT (totalizando 44,35 kWp). A energia anual entregue pelo alimentador é de **23,06 GWh/ano**, com pico sazonal no verão (dezembro a março).
+Sabemos que o STO33 é um circuito radial de distribuição urbana de média tensão (13,8 kV) em topologia aérea e trechos de transição subterrânea, com extensão física total de **19,37 km** (730 segmentos de linha), atendendo **6.499 unidades consumidoras de baixa tensão (UCBT)** e 7 unidades consumidoras de média tensão (UCMT). Possui **105 transformadores de distribuição MT/BT** totalizando **14.318 kVA** de capacidade instalada, **86 chaves seccionadoras**, **2 bancos de capacitores** de MT e **23 sistemas de microgeração solar fotovoltaica** conectados na BT (totalizando **195,89 kW** na base oficial ANEEL MMGD). A energia anual entregue pelo alimentador é de **23,06 GWh/ano**, com pico sazonal no verão (dezembro a março).
 
 ### 2. Qual é a subestação de origem comprovada?
 A subestação comprovada documental e geograficamente na BDGD e no INDGER é a **Subestação Santos 1 (Código: STO)**, localizada nas coordenadas **Latitude -23.926°, Longitude -46.383°**. O alimentador STO33 parte da barra de média tensão `STO569794`, alimentada pelo transformador de força `UNI_TR_AT 56622` (denominação operacional `STO-ETR102`, potência nominal 15/20 MVA, relação de transformação 88/13,8 kV).
@@ -68,7 +68,7 @@ As maiores concentrações de carga estão associadas aos transformadores de alt
 - Automação centralizada no COD Campinas via protocolo DNP3/IEC 60870-5-104.
 
 ### 12. Qual é a presença fotovoltaica na região?
-- **Alimentador STO33:** 23 usinas solares conectadas em baixa tensão, somando **44,35 kWp**.
+- **Alimentador STO33:** 23 usinas solares conectadas em baixa tensão, somando **195,89 kW** na base oficial ANEEL MMGD (44,35 kW cadastrado originalmente na BDGD).
 - **Município de Santos:** **1.342 empreendimentos de micro e minigeração solar**, somando **16.893,56 kW (16,89 MWp)** de potência instalada (10,00 MWp no comércio e 6,32 MWp em residências).
 
 ### 13. Qual é a presença de veículos elétricos?
@@ -79,7 +79,7 @@ Conforme microdados oficiais do DETRAN-SP de **setembro de 2026**:
 - **Projeção para o Alimentador STO33:** Aproximadamente **40 a 50 veículos plug-in** atendidos na área geográfica do circuito.
 
 ### 14. Quais pontos podem apresentar restrições com FV e EV?
-- **Restrição com FV:** Baixa no alimentador como um todo. A geração solar total (44 kW) representa menos de 1,5% da demanda mínima diurna, afastando risco de fluxo reverso na subestação.
+- **Restrição com FV:** Baixa no alimentador como um todo. A geração solar total (195,89 kW) representa menos de 30% da demanda mínima diurna (658 kW), afastando risco de fluxo reverso na subestação no baseline.
 - **Restrição com EV:** Alta e concentrada nos transformadores secundários com mais de 150 consumidores (`1193581`, `1193923`, `48964485`). A conexão simultânea de 3 a 5 veículos em recarga rápida residencial (7,4 kW) entre 19h e 21h pode disparar sobrecargas superiores a 130%.
 
 ### 15. Quais pontos podem ser candidatos a BESS?

@@ -16,7 +16,8 @@ Redirect Capacitors.dss
 Set VoltageBases=[13.8, 0.22]
 CalcVoltageBases
 
-! Monitores de Telemetria
+! Medidores e Monitores de Telemetria
+New EnergyMeter.MedidorSE element=Line.L_42991583 terminal=1
 New Monitor.Mon_Subestacao element=Line.L_42991583 terminal=1 mode=0
 New Monitor.Mon_TrafoCritico element=Transformer.TR_1193581 terminal=1 mode=0
 

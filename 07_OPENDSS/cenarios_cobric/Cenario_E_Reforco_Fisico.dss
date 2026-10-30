@@ -1,0 +1,12 @@
+! ====================================================================
+! CENARIO E: REFORCO FISICO CONVENCIONAL DE REDE (WIRES ALTERNATIVE)
+! ====================================================================
+Redirect "Cenario_B_Expansao_FV_VE.dss"
+
+! Upgrade de capacidade dos 3 maiores transformadores para 300 kVA
+Edit Transformer.TR_1193581 kvas=[300 300] %loadloss=1.0 %noloadloss=0.25 XHL=3.0
+Edit Transformer.TR_1193923 kvas=[300 300] %loadloss=1.0 %noloadloss=0.25 XHL=3.0
+Edit Transformer.TR_1193996 kvas=[300 300] %loadloss=1.0 %noloadloss=0.25 XHL=3.0
+
+! Recondutoramento do tronco principal (upgrade PA6001 para condutor 575 A)
+Edit LineCode.PA6001 r1=0.1865 x1=0.2747 units=km normamps=575 emergamps=575

@@ -1,0 +1,18 @@
+! ====================================================================
+! CENARIO A: REDE ATUAL BASELINE (COM 195.89 kW DE SOLAR OFICIAL MMGD)
+! ====================================================================
+Redirect "../modelo_parcial/Circuit.dss"
+Redirect "../modelo_parcial/LineCodes.dss"
+Redirect "../modelo_parcial/Lines.dss"
+Redirect "../modelo_parcial/Transformers.dss"
+Redirect "../modelo_parcial/LoadShapes.dss"
+Redirect "../modelo_parcial/Loads.dss"
+Redirect "../modelo_parcial/PVSystems.dss"
+Redirect "../modelo_parcial/Capacitors.dss"
+
+Set VoltageBases=[13.8, 0.22]
+CalcVoltageBases
+
+New EnergyMeter.MedidorSE element=Line.L_42991583 terminal=1
+New Monitor.Mon_Subestacao element=Line.L_42991583 terminal=1 mode=0
+New Monitor.Mon_TrafoCritico element=Transformer.TR_1193581 terminal=1 mode=0
