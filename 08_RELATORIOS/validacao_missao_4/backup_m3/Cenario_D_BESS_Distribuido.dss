@@ -1,0 +1,21 @@
+! ====================================================================
+! CENARIO D: BESS DISTRIBUIDO NOS TRAFOS CRITICOS (3 x 50 kW / 150 kWh)
+! MODELO FISICAMENTE CONSISTENTE COM CONTROLE ENERGETICO INDEPENDENTE
+! ====================================================================
+Redirect "Cenario_B_Expansao_FV_VE.dss"
+
+! Curva de despacho por unidade (24 horas, intervalo 1h)
+! Carga noturna: 02h-04h @ 25 kW (75 kWh)
+! Recarga solar: 12h @ 20 kW e 13h @ 15.5 kW (35.5 kWh, limitando rigorosamente a 90% SOC)
+! Descarga no pico: 19h @ 35 kW, 20h @ 45 kW, 21h @ 30 kW (Total descarregado = 110 kWh)
+! Balanco liquido por unidade: 110,5 kWh carregados vs 110,0 kWh descarregados
+New Loadshape.BESS_Dist_Shape npts=24 interval=1.0 mult=[0.0 -0.50 -0.50 -0.50 0.0 0.0 0.0 0.0 0.0 0.0 0.0 -0.40 -0.31 0.0 0.0 0.0 0.0 0.0 0.70 0.90 0.60 0.0 0.0 0.0]
+
+! 3 BESS de 50 kW / 150 kWh na Baixa Tensao (0.22 kV) dos 3 transformadores mais carregados
+New Generator.BESS_DIST_1193581 phases=3 bus1=BT_STO33_30362.1.2.3 kv=0.22 kw=50 pf=1.0 model=1 daily=BESS_Dist_Shape
+New Generator.BESS_DIST_1193923 phases=3 bus1=BT_STO33_30651.1.2.3 kv=0.22 kw=50 pf=1.0 model=1 daily=BESS_Dist_Shape
+New Generator.BESS_DIST_1193996 phases=3 bus1=BT_STO33_30717.1.2.3 kv=0.22 kw=50 pf=1.0 model=1 daily=BESS_Dist_Shape
+
+New Monitor.Mon_BESS_D1 element=Generator.BESS_DIST_1193581 terminal=1 mode=1
+New Monitor.Mon_BESS_D2 element=Generator.BESS_DIST_1193923 terminal=1 mode=1
+New Monitor.Mon_BESS_D3 element=Generator.BESS_DIST_1193996 terminal=1 mode=1

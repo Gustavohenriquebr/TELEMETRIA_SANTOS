@@ -1,21 +1,27 @@
 ! ====================================================================
 ! CENARIO D: BESS DISTRIBUIDO NOS TRAFOS CRITICOS (3 x 50 kW / 150 kWh)
-! MODELO FISICAMENTE CONSISTENTE COM CONTROLE ENERGETICO INDEPENDENTE
+! MODELO NATIVO STORAGE OPENDSS NA BAIXA TENSAO (0.22 kV)
 ! ====================================================================
 Redirect "Cenario_B_Expansao_FV_VE.dss"
 
-! Curva de despacho por unidade (24 horas, intervalo 1h)
-! Carga noturna: 02h-04h @ 25 kW (75 kWh)
-! Recarga solar: 12h @ 20 kW e 13h @ 15.5 kW (35.5 kWh, limitando rigorosamente a 90% SOC)
-! Descarga no pico: 19h @ 35 kW, 20h @ 45 kW, 21h @ 30 kW (Total descarregado = 110 kWh)
-! Balanco liquido por unidade: 110,5 kWh carregados vs 110,0 kWh descarregados
-New Loadshape.BESS_Dist_Shape npts=24 interval=1.0 mult=[0.0 -0.50 -0.50 -0.50 0.0 0.0 0.0 0.0 0.0 0.0 0.0 -0.40 -0.31 0.0 0.0 0.0 0.0 0.0 0.70 0.90 0.60 0.0 0.0 0.0]
+! Curva de despacho por unidade de 50 kW (24 horas, intervalo 1h)
+! Valores multiplicados por kWrated (50 kW):
+! Carga noturna: 02h-04h @ 25 kW (mult = -25/50 = -0.50) -> 75 kWh AC
+! Recarga solar: 12h @ 20 kW (mult = -0.40) e 13h @ 15.53 kW (mult = -0.3106) -> 35.53 kWh AC
+! Descarga no pico: 19h @ 35 kW (mult = 0.70), 20h @ 45 kW (mult = 0.90), 21h @ 30 kW (mult = 0.60) -> 110 kWh AC
+! Total carregado por unidade: 110,53 kWh AC -> 105,00 kWh quimicos (SOC: 20% -> 90%)
+! Total descarregado por unidade: 110,00 kWh AC <- 115,79 kWh quimicos (SOC: 90% -> 12,81%)
+New Loadshape.BESS_Dist_Shape npts=24 interval=1 mult=[0.0 -0.50 -0.50 -0.50 0.0 0.0 0.0 0.0 0.0 0.0 0.0 -0.40 -0.3106 0.0 0.0 0.0 0.0 0.0 0.70 0.90 0.60 0.0 0.0 0.0]
 
-! 3 BESS de 50 kW / 150 kWh na Baixa Tensao (0.22 kV) dos 3 transformadores mais carregados
-New Generator.BESS_DIST_1193581 phases=3 bus1=BT_STO33_30362.1.2.3 kv=0.22 kw=50 pf=1.0 model=1 daily=BESS_Dist_Shape
-New Generator.BESS_DIST_1193923 phases=3 bus1=BT_STO33_30651.1.2.3 kv=0.22 kw=50 pf=1.0 model=1 daily=BESS_Dist_Shape
-New Generator.BESS_DIST_1193996 phases=3 bus1=BT_STO33_30717.1.2.3 kv=0.22 kw=50 pf=1.0 model=1 daily=BESS_Dist_Shape
+! 3 unidades Storage de 50 kW / 150 kWh na Baixa Tensao (0.22 kV)
+New Storage.BESS_DIST_1193581 phases=3 bus1=BT_STO33_30362.1.2.3 kv=0.22 kWrated=50 kVA=50 kWhrated=150 %stored=20 %reserve=10 %EffCharge=95 %EffDischarge=95 %IdlingkW=0 DispMode=Follow daily=BESS_Dist_Shape
+New Storage.BESS_DIST_1193923 phases=3 bus1=BT_STO33_30651.1.2.3 kv=0.22 kWrated=50 kVA=50 kWhrated=150 %stored=20 %reserve=10 %EffCharge=95 %EffDischarge=95 %IdlingkW=0 DispMode=Follow daily=BESS_Dist_Shape
+New Storage.BESS_DIST_1193996 phases=3 bus1=BT_STO33_30717.1.2.3 kv=0.22 kWrated=50 kVA=50 kWhrated=150 %stored=20 %reserve=10 %EffCharge=95 %EffDischarge=95 %IdlingkW=0 DispMode=Follow daily=BESS_Dist_Shape
 
-New Monitor.Mon_BESS_D1 element=Generator.BESS_DIST_1193581 terminal=1 mode=1
-New Monitor.Mon_BESS_D2 element=Generator.BESS_DIST_1193923 terminal=1 mode=1
-New Monitor.Mon_BESS_D3 element=Generator.BESS_DIST_1193996 terminal=1 mode=1
+! Monitores para potencias e variaveis internas de estado
+New Monitor.Mon_BESS_D1_P element=Storage.BESS_DIST_1193581 terminal=1 mode=1
+New Monitor.Mon_BESS_D1_State element=Storage.BESS_DIST_1193581 terminal=1 mode=3
+New Monitor.Mon_BESS_D2_P element=Storage.BESS_DIST_1193923 terminal=1 mode=1
+New Monitor.Mon_BESS_D2_State element=Storage.BESS_DIST_1193923 terminal=1 mode=3
+New Monitor.Mon_BESS_D3_P element=Storage.BESS_DIST_1193996 terminal=1 mode=1
+New Monitor.Mon_BESS_D3_State element=Storage.BESS_DIST_1193996 terminal=1 mode=3

@@ -1,0 +1,121 @@
+CENARIO,HORA,P_SUB_KW,Q_SUB_KVAR,PERDAS_KW,PERDAS_KVAR,VMIN_PU,VMAX_PU,CONVERGIU
+Cenário A (Baseline),1,925.74,-341.59,56.97,6.48,1.0146,1.0283,True
+Cenário A (Baseline),2,754.45,-402.07,55.07,2.66,1.0178,1.0286,True
+Cenário A (Baseline),3,695.51,-422.38,54.53,1.54,1.0189,1.0288,True
+Cenário A (Baseline),4,670.01,-431.17,54.31,1.09,1.0194,1.0288,True
+Cenário A (Baseline),5,658.14,-435.27,54.21,0.88,1.0196,1.0288,True
+Cenário A (Baseline),6,752.24,-402.2,55.05,2.62,1.0178,1.0286,True
+Cenário A (Baseline),7,977.68,-322.93,57.63,7.8,1.0136,1.0282,True
+Cenário A (Baseline),8,1002.33,-314.14,57.96,8.46,1.0131,1.0282,True
+Cenário A (Baseline),9,987.3,-319.57,57.76,8.06,1.0134,1.0282,True
+Cenário A (Baseline),10,972.49,-324.83,57.56,7.67,1.0137,1.0282,True
+Cenário A (Baseline),11,1034.22,-302.71,58.4,9.33,1.0125,1.0281,True
+Cenário A (Baseline),12,1144.96,-263.0,60.06,12.59,1.0104,1.0279,True
+Cenário A (Baseline),13,1144.34,-263.44,60.05,12.57,1.0104,1.0279,True
+Cenário A (Baseline),14,1046.49,-298.67,58.58,9.68,1.0123,1.0281,True
+Cenário A (Baseline),15,1055.56,-295.21,58.71,9.93,1.0121,1.0281,True
+Cenário A (Baseline),16,1046.29,-298.56,58.57,9.67,1.0123,1.0281,True
+Cenário A (Baseline),17,1163.87,-256.19,60.36,13.18,1.01,1.0279,True
+Cenário A (Baseline),18,1503.56,-132.88,66.76,25.58,1.0035,1.0273,True
+Cenário A (Baseline),19,2703.02,325.8,104.27,96.68,0.98,1.0253,True
+Cenário A (Baseline),20,2982.5,437.86,116.44,119.52,0.9744,1.0248,True
+Cenário A (Baseline),21,2164.72,115.49,84.51,59.43,0.9907,1.0262,True
+Cenário A (Baseline),22,1603.62,-96.04,68.99,29.87,1.0016,1.0272,True
+Cenário A (Baseline),23,1287.22,-211.92,62.47,17.3,1.0077,1.0277,True
+Cenário A (Baseline),24,1136.77,-266.17,59.93,12.34,1.0106,1.0279,True
+Cenário B (FV + VE),1,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário B (FV + VE),2,769.07,-398.44,55.22,2.97,1.0174,1.0286,True
+Cenário B (FV + VE),3,703.03,-420.83,54.6,1.68,1.0187,1.0287,True
+Cenário B (FV + VE),4,677.49,-429.55,54.37,1.22,1.0192,1.0288,True
+Cenário B (FV + VE),5,665.61,-433.63,54.27,1.02,1.0194,1.0288,True
+Cenário B (FV + VE),6,767.11,-398.66,55.2,2.93,1.0174,1.0286,True
+Cenário B (FV + VE),7,1015.21,-314.2,58.14,8.85,1.0126,1.0282,True
+Cenário B (FV + VE),8,1062.31,-300.05,58.82,10.2,1.0115,1.0281,True
+Cenário B (FV + VE),9,1024.88,-310.96,58.28,9.11,1.0124,1.0281,True
+Cenário B (FV + VE),10,987.54,-321.47,57.76,8.08,1.0133,1.0282,True
+Cenário B (FV + VE),11,1041.69,-300.91,58.51,9.55,1.0123,1.0281,True
+Cenário B (FV + VE),12,1152.39,-261.08,60.18,12.83,1.0103,1.0279,True
+Cenário B (FV + VE),13,1159.36,-259.88,60.29,13.06,1.0101,1.0279,True
+Cenário B (FV + VE),14,1061.57,-295.31,58.8,10.12,1.0119,1.0281,True
+Cenário B (FV + VE),15,1078.06,-289.91,59.04,10.6,1.0115,1.0281,True
+Cenário B (FV + VE),16,1083.81,-289.74,59.13,10.79,1.0113,1.028,True
+Cenário B (FV + VE),17,1314.8,-220.25,63.02,18.59,1.0058,1.0277,True
+Cenário B (FV + VE),18,1959.33,-16.77,78.61,49.68,0.9905,1.0267,True
+Cenário B (FV + VE),19,3480.96,555.16,142.31,172.53,0.9569,1.0241,True
+Cenário B (FV + VE),20,3724.9,662.13,155.96,197.92,0.9523,1.0236,True
+Cenário B (FV + VE),21,2664.04,252.12,103.0,96.38,0.9762,1.0255,True
+Cenário B (FV + VE),22,1869.48,-28.77,75.8,43.57,0.9941,1.0268,True
+Cenário B (FV + VE),23,1400.37,-184.64,64.64,21.67,1.0046,1.0275,True
+Cenário B (FV + VE),24,1196.94,-251.97,60.91,14.32,1.0089,1.0279,True
+Cenário C (BESS Centralizado),1,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário C (BESS Centralizado),2,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário C (BESS Centralizado),3,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário C (BESS Centralizado),4,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário C (BESS Centralizado),5,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário C (BESS Centralizado),6,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário C (BESS Centralizado),7,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário C (BESS Centralizado),8,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário C (BESS Centralizado),9,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário C (BESS Centralizado),10,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário C (BESS Centralizado),11,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário C (BESS Centralizado),12,1402.73,-261.13,60.17,12.85,1.0101,1.0278,True
+Cenário C (BESS Centralizado),13,1319.9,-259.76,60.28,13.06,1.01,1.0278,True
+Cenário C (BESS Centralizado),14,1061.17,-295.08,58.79,10.11,1.0119,1.0281,True
+Cenário C (BESS Centralizado),15,1078.1,-289.97,59.04,10.6,1.0115,1.0281,True
+Cenário C (BESS Centralizado),16,1083.82,-289.77,59.13,10.79,1.0113,1.028,True
+Cenário C (BESS Centralizado),17,1314.79,-220.3,63.02,18.59,1.0058,1.0277,True
+Cenário C (BESS Centralizado),18,1959.38,-16.87,78.61,49.68,0.9905,1.0267,True
+Cenário C (BESS Centralizado),19,1959.38,-16.87,78.61,49.68,0.9905,1.0267,True
+Cenário C (BESS Centralizado),20,1959.38,-16.87,78.61,49.68,0.9905,1.0267,True
+Cenário C (BESS Centralizado),21,1959.38,-16.87,78.61,49.68,0.9905,1.0267,True
+Cenário C (BESS Centralizado),22,1959.38,-16.87,78.61,49.68,0.9905,1.0267,True
+Cenário C (BESS Centralizado),23,1959.38,-16.87,78.61,49.68,0.9905,1.0267,True
+Cenário C (BESS Centralizado),24,1959.38,-16.87,78.61,49.68,0.9905,1.0267,True
+Cenário D (BESS Distribuído),1,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário D (BESS Distribuído),2,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário D (BESS Distribuído),3,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário D (BESS Distribuído),4,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário D (BESS Distribuído),5,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário D (BESS Distribuído),6,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário D (BESS Distribuído),7,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário D (BESS Distribuído),8,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário D (BESS Distribuído),9,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário D (BESS Distribuído),10,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário D (BESS Distribuído),11,963.14,-332.77,57.45,7.47,1.0135,1.0282,True
+Cenário D (BESS Distribuído),12,1214.0,-258.37,61.44,15.66,1.0086,1.0279,True
+Cenário D (BESS Distribuído),13,1206.93,-257.62,61.25,15.2,1.0089,1.0279,True
+Cenário D (BESS Distribuído),14,1061.28,-295.05,58.79,10.11,1.0119,1.0281,True
+Cenário D (BESS Distribuído),15,1078.1,-289.97,59.04,10.6,1.0115,1.0281,True
+Cenário D (BESS Distribuído),16,1083.82,-289.77,59.13,10.79,1.0113,1.028,True
+Cenário D (BESS Distribuído),17,1314.79,-220.3,63.02,18.59,1.0058,1.0277,True
+Cenário D (BESS Distribuído),18,1959.38,-16.87,78.61,49.68,0.9905,1.0267,True
+Cenário D (BESS Distribuído),19,1959.38,-16.87,78.61,49.68,0.9905,1.0267,True
+Cenário D (BESS Distribuído),20,1959.38,-16.87,78.61,49.68,0.9905,1.0267,True
+Cenário D (BESS Distribuído),21,1959.38,-16.87,78.61,49.68,0.9905,1.0267,True
+Cenário D (BESS Distribuído),22,1959.38,-16.87,78.61,49.68,0.9905,1.0267,True
+Cenário D (BESS Distribuído),23,1959.38,-16.87,78.61,49.68,0.9905,1.0267,True
+Cenário D (BESS Distribuído),24,1959.38,-16.87,78.61,49.68,0.9905,1.0267,True
+Cenário E (Reforço Físico),1,963.02,-333.38,57.31,6.86,1.0136,1.0282,True
+Cenário E (Reforço Físico),2,768.98,-398.81,55.12,2.59,1.0174,1.0286,True
+Cenário E (Reforço Físico),3,702.94,-421.12,54.5,1.37,1.0187,1.0287,True
+Cenário E (Reforço Físico),4,677.41,-429.83,54.29,0.94,1.0192,1.0288,True
+Cenário E (Reforço Físico),5,665.53,-433.9,54.19,0.74,1.0194,1.0288,True
+Cenário E (Reforço Físico),6,767.02,-399.07,55.1,2.56,1.0174,1.0286,True
+Cenário E (Reforço Físico),7,1015.06,-314.89,57.99,8.17,1.0126,1.0282,True
+Cenário E (Reforço Físico),8,1062.16,-300.81,58.65,9.45,1.0115,1.0281,True
+Cenário E (Reforço Físico),9,1024.73,-311.65,58.13,8.42,1.0124,1.0281,True
+Cenário E (Reforço Físico),10,987.4,-322.1,57.62,7.44,1.0133,1.0282,True
+Cenário E (Reforço Físico),11,1041.55,-301.64,58.36,8.84,1.0124,1.0281,True
+Cenário E (Reforço Físico),12,1152.23,-261.99,60.0,11.95,1.0103,1.0279,True
+Cenário E (Reforço Físico),13,1159.19,-260.78,60.11,12.16,1.0101,1.0279,True
+Cenário E (Reforço Físico),14,1061.41,-296.03,58.64,9.37,1.0119,1.0281,True
+Cenário E (Reforço Físico),15,1077.91,-290.69,58.87,9.84,1.0115,1.0281,True
+Cenário E (Reforço Físico),16,1083.66,-290.53,58.96,10.01,1.0113,1.028,True
+Cenário E (Reforço Físico),17,1314.57,-221.45,62.79,17.41,1.0058,1.0277,True
+Cenário E (Reforço Físico),18,1958.83,-19.6,78.1,46.87,0.9905,1.0267,True
+Cenário E (Reforço Físico),19,3479.25,545.61,140.57,163.03,0.9571,1.0241,True
+Cenário E (Reforço Físico),20,3722.92,651.12,153.94,186.97,0.9525,1.0237,True
+Cenário E (Reforço Físico),21,2663.09,246.76,102.04,91.05,0.9763,1.0255,True
+Cenário E (Reforço Físico),22,1869.03,-31.28,75.35,41.07,0.9941,1.0268,True
+Cenário E (Reforço Físico),23,1400.13,-185.98,64.38,20.32,1.0046,1.0276,True
+Cenário E (Reforço Físico),24,1196.75,-252.93,60.71,13.36,1.0089,1.0279,True

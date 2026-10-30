@@ -1,0 +1,6 @@
+CENARIO,CLASSIFICACAO,JUSTIFICATIVA
+Cenário A (Baseline),VALIDADO,"Convergência 100%, dados solares oficiais ANEEL (195,89 kW), fluxo de potência calibrado com BDGD."
+Cenário B (FV + VE),VALIDADO,"Convergência 100%, 100 VEs distribuídos com perfil real de recarga noturna e expansão solar modelada."
+Cenário C (BESS Centralizado),VALIDADO COM RESSALVAS,"Modelo nativo Storage validado, limites de SOC estritamente respeitados. Ressalva técnica mandatória: BESS Central alivia demanda de pico na subestação, mas NÃO resolve sobrecarga térmica nos transformadores locais de baixa tensão."
+Cenário D (BESS Distribuído),VALIDADO,"3 unidades nativas Storage operando na baixa tensão dos transformadores críticos. Redução comprovada do carregamento do TR_1193581 de 94,67% para 54,58% e alívio de perdas Joulicas locais."
+Cenário E (Reforço Físico),VALIDADO,"Recondutoramento de 5,247 km e upgrade de 3 transformadores simulados no OpenDSS com convergência 100%. CAPEX auditado e corrigido para R$ 624.511,55."

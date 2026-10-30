@@ -77,23 +77,23 @@ Na **Missão 3**, os modelos de BESS foram reformulados com controle rigoroso de
 | **Alívio de Ponta vs Cenário B (kW / %)** | — | Referência | **-943,98 kW (-25,3%)** | -144,02 kW (-3,9%) | -1,98 kW (-0,05%) |
 | **Demanda Mínima (kW)** | 658,14 | 665,61 | 767,07 | 665,68 | 665,53 |
 | **Energia Diária Injetada (kWh/dia)** | 29.413,03 | 32.823,09 | 32.833,33 | 32.810,70 | 32.814,77 |
-| **Perdas Técnicas Diárias (kWh/dia)** | 1.539,15 | 1.664,31 | 1.664,02 | **1.649,67** | 1.655,72 |
-| **Percentual de Perdas Diárias (%)** | 5,23% | 5,07% | 5,07% | **5,03%** | 5,05% |
-| **Tensão Mínima ($V_{\min}$, pu)** | 0,9744 | 0,9523 | 0,9530 | **0,9540** | 0,9525 |
-| **Tensão Máxima ($V_{\max}$, pu)** | 1,0288 | 1,0288 | 1,0286 | 1,0288 | 1,0288 |
-| **CAPEX Estimado da Solução (R$)** | R$ 0,00 | R$ 0,00 | R$ 4.950.000,00 | R$ 945.000,00 | **R$ 553.500,00** |
+| **Perdas Técnicas Diárias (kWh/dia)** | 1.539,15 | 1.664,31 | 1.542,65 | **1.544,89** | 1.655,72 |
+| **Percentual de Perdas Diárias (%)** | 5,23% | 5,07% | 4,89% | **4,94%** | 5,05% |
+| **Tensão Mínima ($V_{\min}$, pu)** | 0,9744 | 0,9523 | 0,9905 | **0,9905** | 0,9525 |
+| **Tensão Máxima ($V_{\max}$, pu)** | 1,0288 | 1,0288 | 1,0282 | 1,0282 | 1,0288 |
+| **CAPEX Estimado da Solução (R$)** | R$ 0,00 | R$ 0,00 | R$ 4.950.000,00 | R$ 945.000,00 | **R$ 624.511,55** |
 | **Convergência Numérica (100% passos)** | **SIM** | **SIM** | **SIM** | **SIM** | **SIM** |
 
-### Conclusões Técnicas Centrais da Auditoria Física:
-1. **BESS Centralizado (Cenário C):** É altamente eficiente para **corte de ponta sistêmico na subestação** (-944 kW), permitindo postergar obras no transformador de força AT/MT. Contudo, **NÃO reduz a sobrecarga nos transformadores de distribuição** (o carregamento do trafo `TR_1193581` permanece inalterado em 94,67%), pois a corrente continua fluindo pela rede secundária.
-2. **BESS Distribuído (Cenário D):** É a alternativa mais equilibrada e eficaz para a rede local, aliviando o transformador mais crítico de **94,67% para 75,04%** (-19,63% de carregamento), alcançando as **menores perdas técnicas da rede (1.649,67 kWh/dia)** e o melhor perfil de tensão ($V_{\min} = 0,9540\text{ pu}$), com cerca de 19% do custo de investimento do BESS centralizado.
-3. **Reforço Físico (Cenário E):** Elimina a sobrecarga dos transformadores por aumento de capacidade nominal (carregamento cai para 70,08%) com o menor CAPEX inicial (R$ 553,5k), porém possui ativo passivo sem flexibilidade operativa ou capacidade de armazenamento de excedentes solares.
+### Conclusões Técnicas Centrais da Auditoria Física e Modelagem Nativa:
+1. **BESS Centralizado (Cenário C — Storage Nativo):** O modelo com elemento `Storage` nativo operando em 13,8 kV confirma alta eficácia para **corte de ponta na subestação** e suporte de tensão, com monitoramento direto de $SOC \in [12,81\%, 90,00\%]$ e $\eta_{\text{RT}} = 90,25\%$. Ressalva mandatória: **NÃO alivia a sobrecarga térmica dos transformadores locais de baixa tensão** (`TR_1193581` permanece inalterado).
+2. **BESS Distribuído (Cenário D — Storage Nativo na BT):** Três unidades de $50\text{ kW} / 150\text{ kWh}$ nos transformadores críticos operam com controle independente, aliviando o transformador `TR_1193581` de **94,67% para 54,58%**, proporcionando alívio térmico direto e redução de perdas Joulicas locais com investimento ~5x menor que a solução centralizada.
+3. **Reforço Físico (Cenário E — Wires Alternative):** Substituição de 3 transformadores (225 para 300 kVA) e recondutoramento de **5,247 km** de rede tronco (188 trechos PA6001 auditados no modelo). CAPEX auditado e corrigido para **R$ 624.511,55** (em vez de R$ 553,5k que usava 4,5 km). Elimina sobrecargas locais com ativo passivo de longa vida útil (30+ anos).
 
 ---
 
 ## 4. Auditoria Técnica, Reprodutibilidade e Qualidade dos Dados
 
-O repositório passou por três ciclos rigorosos de auditoria técnica documentados em `08_RELATORIOS/`:
+O repositório passou por quatro ciclos rigorosos de auditoria técnica documentados em `08_RELATORIOS/`:
 
 ### 4.1. Auditoria Técnica Geral e Rastreabilidade
 - Relatório de Auditoria: [`08_RELATORIOS/AUDITORIA_TECNICA_STO33.md`](08_RELATORIOS/AUDITORIA_TECNICA_STO33.md)
@@ -101,12 +101,18 @@ O repositório passou por três ciclos rigorosos de auditoria técnica documenta
 - Validação de Reprodutibilidade (Missão 2): [`08_RELATORIOS/validacao_reprodutibilidade/VALIDACAO_REPRODUTIBILIDADE_COBRIC.md`](08_RELATORIOS/validacao_reprodutibilidade/VALIDACAO_REPRODUTIBILIDADE_COBRIC.md)
 - Comparação Matemática (Missão 2): [`08_RELATORIOS/validacao_reprodutibilidade/COMPARACAO_RESULTADOS_PUBLICADOS.csv`](08_RELATORIOS/validacao_reprodutibilidade/COMPARACAO_RESULTADOS_PUBLICADOS.csv)
 
-### 4.2. Auditoria e Correção Física dos BESS (Missão 3 — Outubro/2026)
+### 4.2. Auditoria e Correção Física dos BESS (Missão 3)
 - Relatório Executivo da Missão 3: [`08_RELATORIOS/validacao_missao_3/RELATORIO_CORRECAO_BESS_COBRIC.md`](08_RELATORIOS/validacao_missao_3/RELATORIO_CORRECAO_BESS_COBRIC.md)
 - Balanço Energético Detalhado dos BESS: [`08_RELATORIOS/validacao_missao_3/BALANCO_ENERGETICO_BESS.csv`](08_RELATORIOS/validacao_missao_3/BALANCO_ENERGETICO_BESS.csv)
 - Comparação Antes vs Depois: [`08_RELATORIOS/validacao_missao_3/COMPARACAO_ANTES_DEPOIS.csv`](08_RELATORIOS/validacao_missao_3/COMPARACAO_ANTES_DEPOIS.csv)
-- Validação Física e Elétrica: [`08_RELATORIOS/validacao_missao_3/VALIDACAO_FISICA_ELETRICA.md`](08_RELATORIOS/validacao_missao_3/VALIDACAO_FISICA_ELETRICA.md)
-- Análise Econômica Atualizada: [`08_RELATORIOS/validacao_missao_3/ANALISE_ECONOMICA_ATUALIZADA.md`](08_RELATORIOS/validacao_missao_3/ANALISE_ECONOMICA_ATUALIZADA.md)
+
+### 4.3. Integração de Elementos Nativos Storage e Validação Científica (Missão 4)
+- Relatório Técnico Completo: [`08_RELATORIOS/validacao_missao_4/RELATORIO_TECNICO_MISSAO_4.md`](08_RELATORIOS/validacao_missao_4/RELATORIO_TECNICO_MISSAO_4.md)
+- Guia de Reprodução: [`08_RELATORIOS/validacao_missao_4/README_MISSAO_4.md`](08_RELATORIOS/validacao_missao_4/README_MISSAO_4.md)
+- Telemetria Interna dos BESS (OpenDSS mode=3): [`08_RELATORIOS/validacao_missao_4/BESS_ESTADO_INTERNO_M4.csv`](08_RELATORIOS/validacao_missao_4/BESS_ESTADO_INTERNO_M4.csv)
+- 10 Testes Físicos Obrigatórios: [`08_RELATORIOS/validacao_missao_4/BESS_TESTES_VALIDACAO_M4.csv`](08_RELATORIOS/validacao_missao_4/BESS_TESTES_VALIDACAO_M4.csv)
+- Auditoria do CAPEX Cenário E: [`08_RELATORIOS/validacao_missao_4/AUDITORIA_CAPEX_CENARIO_E.csv`](08_RELATORIOS/validacao_missao_4/AUDITORIA_CAPEX_CENARIO_E.csv)
+- Classificação Científica dos Cenários: [`08_RELATORIOS/validacao_missao_4/CLASSIFICACAO_VALIDACAO_M4.csv`](08_RELATORIOS/validacao_missao_4/CLASSIFICACAO_VALIDACAO_M4.csv)
 
 ---
 
@@ -179,15 +185,25 @@ TELEMETRIA_SANTOS/
 │   │   ├── COMPARACAO_RESULTADOS_PUBLICADOS.csv
 │   │   ├── MATRIZ_RASTREABILIDADE_CENARIOS.csv
 │   │   └── CHECKLIST_VALIDACAO_ELETRICA.md
-│   └── validacao_missao_3/                  <- Auditoria da Missão 3 (Modelos Físicos de BESS)
-│       ├── RELATORIO_CORRECAO_BESS_COBRIC.md
-│       ├── RESULTADOS_CENARIOS_COBRIC_MISSAO_3.csv
-│       ├── CURVAS_HORARIAS_COBRIC_MISSAO_3.csv
-│       ├── BALANCO_ENERGETICO_BESS.csv
-│       ├── COMPARACAO_ANTES_DEPOIS.csv
-│       ├── VALIDACAO_FISICA_ELETRICA.md
-│       ├── ANALISE_ECONOMICA_ATUALIZADA.md
-│       └── README_MISSAO_3.md
+│   ├── validacao_missao_3/                  <- Auditoria da Missão 3 (Modelos Físicos de BESS)
+│   │   ├── RELATORIO_CORRECAO_BESS_COBRIC.md
+│   │   ├── RESULTADOS_CENARIOS_COBRIC_MISSAO_3.csv
+│   │   ├── CURVAS_HORARIAS_COBRIC_MISSAO_3.csv
+│   │   ├── BALANCO_ENERGETICO_BESS.csv
+│   │   ├── COMPARACAO_ANTES_DEPOIS.csv
+│   │   ├── VALIDACAO_FISICA_ELETRICA.md
+│   │   ├── ANALISE_ECONOMICA_ATUALIZADA.md
+│   │   └── README_MISSAO_3.md
+│   └── validacao_missao_4/                  <- Auditoria da Missão 4 (Storage Nativo OpenDSS)
+│       ├── RELATORIO_TECNICO_MISSAO_4.md
+│       ├── README_MISSAO_4.md
+│       ├── RESULTADOS_CENARIOS_COBRIC_M4.csv
+│       ├── CURVAS_HORARIAS_COBRIC_M4.csv
+│       ├── BESS_ESTADO_INTERNO_M4.csv
+│       ├── BESS_TESTES_VALIDACAO_M4.csv
+│       ├── AUDITORIA_CAPEX_CENARIO_E.csv
+│       ├── CLASSIFICACAO_VALIDACAO_M4.csv
+│       └── executar_missao_4.py
 │
 └── 09_AUTOMACAO/                            <- Pipeline Automatizado em Python
     ├── requirements.txt                     <- Dependências do projeto (pyogrio, opendssdirect, etc.)
@@ -211,9 +227,14 @@ pip install -r 09_AUTOMACAO/requirements.txt
 python3 07_OPENDSS/cenarios_cobric/run_cenarios_cobric.py
 ```
 
-### 6.3. Executar o Orquestrador da Missão 3 (Validação Física e Balanço de SOC)
+### 6.3. Executar o Orquestrador da Missão 3 (Modelos Físicos de BESS)
 ```bash
 python3 08_RELATORIOS/validacao_missao_3/executar_missao_3.py
+```
+
+### 6.4. Executar o Orquestrador da Missão 4 (Elemento Nativo Storage e Auditoria de CAPEX)
+```bash
+python3 08_RELATORIOS/validacao_missao_4/executar_missao_4.py
 ```
 
 ---

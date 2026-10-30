@@ -1,0 +1,4 @@
+ITEM,QUANTIDADE_MODELO,QUANTIDADE_MISSAO_3,CUSTO_UNITARIO_RS,FONTE_CUSTO,CAPEX_CORRIGIDO_RS
+Recondutoramento de Tronco PA6001 (575 A),5.24749 km (188 trechos),4.500 km,95000.0,Banco de Preços Referenciais ANEEL / CPFL Piratininga,498511.55
+Substituição de Trafos (225 kVA -> 300 kVA),"3 unidades (TR_1193581, TR_1193923, TR_1193996)",3 unidades,42000.0,Tabela Referencial de Obras de Distribuição (Classe 4 AACE),126000.0
+TOTAL REFORÇO FÍSICO CONVENCIONAL,188 trechos + 3 trafos,"4,5 km + 3 trafos",-,Soma das rubricas auditadas,624511.55

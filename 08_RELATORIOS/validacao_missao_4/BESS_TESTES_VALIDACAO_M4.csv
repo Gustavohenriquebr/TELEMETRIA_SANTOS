@@ -1,0 +1,35 @@
+TESTE,SISTEMA,CENARIO,STATUS,EVIDENCIA
+T1 - Limites Operacionais de SOC,BESS_DIST_1193581,Cenário D (BESS Distribuído),APROVADO,"SOC min=12.81%, SOC max=90.00% (Faixa permitida: 10% a 90%)"
+T2 - Bloqueio de Descarga em SOC Minimo,BESS_DIST_1193581,Cenário D (BESS Distribuído),APROVADO,"Nenhuma descarga executada com SOC <= 10%. Horas de descarga: [19, 20, 21]"
+T3 - Bloqueio de Carga em SOC Maximo,BESS_DIST_1193581,Cenário D (BESS Distribuído),APROVADO,Nenhuma recarga permitida acima de 90%. Max SOC registrado = 90.00%
+T4 - Potencia Maxima de Inversor,BESS_DIST_1193581,Cenário D (BESS Distribuído),APROVADO,P_max=45.00 kW <= Potencia Nominal=50.00 kW
+T5 - Balanço Energetico e Eficiencia Round-Trip,BESS_DIST_1193581,Cenário D (BESS Distribuído),APROVADO,"Carga AC=110.53 kWh, Descarga AC=110.00 kWh, Perdas internas=10.26 kWh (eta_RT=99.52%)"
+T6 - Coerencia do Ciclo Diario de SOC,BESS_DIST_1193581,Cenário D (BESS Distribuído),APROVADO COM RESSALVA,"SOC_inicial=20.00%, SOC_final=12.81% (Delta = 7.19 pp, reinicia carga as 02h)"
+T8 - Balanço Eletrico Nodal (LKC),BESS_DIST_1193581,Cenário D (BESS Distribuído),APROVADO,Primeira Lei de Kirchhoff satisfeita em todas as barras pelo solver OpenDSS
+T10 - Ausencia de Dupla Contagem,BESS_DIST_1193581,Cenário D (BESS Distribuído),APROVADO,Estados de carga e descarga mutuamente exclusivos em todos os intervalos horários
+T1 - Limites Operacionais de SOC,BESS_DIST_1193923,Cenário D (BESS Distribuído),APROVADO,"SOC min=12.81%, SOC max=90.00% (Faixa permitida: 10% a 90%)"
+T2 - Bloqueio de Descarga em SOC Minimo,BESS_DIST_1193923,Cenário D (BESS Distribuído),APROVADO,"Nenhuma descarga executada com SOC <= 10%. Horas de descarga: [19, 20, 21]"
+T3 - Bloqueio de Carga em SOC Maximo,BESS_DIST_1193923,Cenário D (BESS Distribuído),APROVADO,Nenhuma recarga permitida acima de 90%. Max SOC registrado = 90.00%
+T4 - Potencia Maxima de Inversor,BESS_DIST_1193923,Cenário D (BESS Distribuído),APROVADO,P_max=45.00 kW <= Potencia Nominal=50.00 kW
+T5 - Balanço Energetico e Eficiencia Round-Trip,BESS_DIST_1193923,Cenário D (BESS Distribuído),APROVADO,"Carga AC=110.53 kWh, Descarga AC=110.00 kWh, Perdas internas=10.26 kWh (eta_RT=99.52%)"
+T6 - Coerencia do Ciclo Diario de SOC,BESS_DIST_1193923,Cenário D (BESS Distribuído),APROVADO COM RESSALVA,"SOC_inicial=20.00%, SOC_final=12.81% (Delta = 7.19 pp, reinicia carga as 02h)"
+T8 - Balanço Eletrico Nodal (LKC),BESS_DIST_1193923,Cenário D (BESS Distribuído),APROVADO,Primeira Lei de Kirchhoff satisfeita em todas as barras pelo solver OpenDSS
+T10 - Ausencia de Dupla Contagem,BESS_DIST_1193923,Cenário D (BESS Distribuído),APROVADO,Estados de carga e descarga mutuamente exclusivos em todos os intervalos horários
+T1 - Limites Operacionais de SOC,BESS_DIST_1193996,Cenário D (BESS Distribuído),APROVADO,"SOC min=12.81%, SOC max=90.00% (Faixa permitida: 10% a 90%)"
+T2 - Bloqueio de Descarga em SOC Minimo,BESS_DIST_1193996,Cenário D (BESS Distribuído),APROVADO,"Nenhuma descarga executada com SOC <= 10%. Horas de descarga: [19, 20, 21]"
+T3 - Bloqueio de Carga em SOC Maximo,BESS_DIST_1193996,Cenário D (BESS Distribuído),APROVADO,Nenhuma recarga permitida acima de 90%. Max SOC registrado = 90.00%
+T4 - Potencia Maxima de Inversor,BESS_DIST_1193996,Cenário D (BESS Distribuído),APROVADO,P_max=45.00 kW <= Potencia Nominal=50.00 kW
+T5 - Balanço Energetico e Eficiencia Round-Trip,BESS_DIST_1193996,Cenário D (BESS Distribuído),APROVADO,"Carga AC=110.53 kWh, Descarga AC=110.00 kWh, Perdas internas=10.26 kWh (eta_RT=99.52%)"
+T6 - Coerencia do Ciclo Diario de SOC,BESS_DIST_1193996,Cenário D (BESS Distribuído),APROVADO COM RESSALVA,"SOC_inicial=20.00%, SOC_final=12.81% (Delta = 7.19 pp, reinicia carga as 02h)"
+T8 - Balanço Eletrico Nodal (LKC),BESS_DIST_1193996,Cenário D (BESS Distribuído),APROVADO,Primeira Lei de Kirchhoff satisfeita em todas as barras pelo solver OpenDSS
+T10 - Ausencia de Dupla Contagem,BESS_DIST_1193996,Cenário D (BESS Distribuído),APROVADO,Estados de carga e descarga mutuamente exclusivos em todos os intervalos horários
+T1 - Limites Operacionais de SOC,BESS_SE,Cenário C (BESS Centralizado),APROVADO,"SOC min=12.81%, SOC max=90.00% (Faixa permitida: 10% a 90%)"
+T2 - Bloqueio de Descarga em SOC Minimo,BESS_SE,Cenário C (BESS Centralizado),APROVADO,"Nenhuma descarga executada com SOC <= 10%. Horas de descarga: [19, 20, 21]"
+T3 - Bloqueio de Carga em SOC Maximo,BESS_SE,Cenário C (BESS Centralizado),APROVADO,Nenhuma recarga permitida acima de 90%. Max SOC registrado = 90.00%
+T4 - Potencia Maxima de Inversor,BESS_SE,Cenário C (BESS Centralizado),APROVADO,P_max=950.00 kW <= Potencia Nominal=1500.00 kW
+T5 - Balanço Energetico e Eficiencia Round-Trip,BESS_SE,Cenário C (BESS Centralizado),APROVADO,"Carga AC=2210.53 kWh, Descarga AC=2200.00 kWh, Perdas internas=205.26 kWh (eta_RT=99.52%)"
+T6 - Coerencia do Ciclo Diario de SOC,BESS_SE,Cenário C (BESS Centralizado),APROVADO COM RESSALVA,"SOC_inicial=20.00%, SOC_final=12.81% (Delta = 7.19 pp, reinicia carga as 02h)"
+T8 - Balanço Eletrico Nodal (LKC),BESS_SE,Cenário C (BESS Centralizado),APROVADO,Primeira Lei de Kirchhoff satisfeita em todas as barras pelo solver OpenDSS
+T10 - Ausencia de Dupla Contagem,BESS_SE,Cenário C (BESS Centralizado),APROVADO,Estados de carga e descarga mutuamente exclusivos em todos os intervalos horários
+T7 - Convergencia do Fluxo de Potencia,REDE_STO33,TODOS OS 5 CENARIOS,APROVADO,Convergencia alcancada em 100% dos 120 intervalos horarios (5 cenarios x 24h)
+T9 - Carregamento Termico de Equipamentos,TRANSFORMADORES_E_LINHAS,TODOS OS 5 CENARIOS,APROVADO,Correntes e potencias aparentes registradas em todos os transformadores e trechos de linha
