@@ -268,7 +268,7 @@ def build_bess_power_and_energy_reports(df_bess):
             soc_end = 100.0 * e_end / float(r['CAPACIDADE_NOMINAL_KWH'])
             power_rows.append({
                 'CENARIO': r['CENARIO'], 'HORA': h, 'BESS_NAME': bname,
-                'P_REQUESTED_KW': p_req, 'P_AC_PYTHON_KW': p_req,
+                'P_REQUESTED_KW': p_req, 'P_AC_REFERENCIA_LOADSHAPE_KW': p_req,
                 'P_AC_OPENDSS_KW': round(p_meas, 4),
                 'DELTA_KW': round(p_meas - p_req, 4),
                 'STATE': r['STATE_NAME'], 'SOC_INICIO_PCT': round(soc_start, 3),
@@ -348,7 +348,7 @@ def execute_physical_tests(df_bess, df_summary, df_trafos, df_power):
         'TESTE': 'T7 - Convergencia do fluxo de potencia',
         'SISTEMA': 'REDE_STO33', 'CENARIO': 'TODOS OS 5 CENARIOS',
         'STATUS': 'APROVADO' if conv_all else 'REPROVADO',
-        'EVIDENCIA': f"{int(df_summary['CONVERGENCIA_24H'].sum())} de {len(df_summary) * 24 // len(df_summary)} cenários? Convergência horária registrada por cenário."
+        'EVIDENCIA': f"{int(df_summary['CONVERGENCIA_24H'].sum())} de {len(df_summary)} cenários convergiram em seus 24 passos horários."
     })
 
     if not df_trafos.empty:
