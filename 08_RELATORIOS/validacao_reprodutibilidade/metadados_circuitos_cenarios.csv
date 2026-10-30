@@ -1,0 +1,6 @@
+,num_buses,num_nodes,num_lines,num_trafos,num_loads,num_pv,num_caps,total_pv_pmpp,total_trafo_kva,conv_snap,iters_snap
+Cenário A (Baseline),921,2761,792,105,94,23,2,195.89000000000001,14318.0,True,3
+Cenário B (FV + VE),921,2761,792,105,114,46,2,391.78000000000003,14318.0,True,3
+Cenário C (BESS Centralizado),921,2761,792,105,114,46,2,391.78000000000003,14318.0,True,3
+Cenário D (BESS Distribuído),921,2761,792,105,114,46,2,391.78000000000003,14318.0,True,3
+Cenário E (Reforço Físico),921,2761,792,105,114,46,2,391.78000000000003,14543.0,True,3
