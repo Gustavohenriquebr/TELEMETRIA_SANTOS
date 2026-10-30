@@ -1,15 +1,24 @@
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# Python
 __pycache__/
+*.py[cod]
+*$py.class
 .venv/
 venv/
-*.pyc
+ENV/
 
-# Bases brutas grandes
-02_DADOS_BRUTOS/*.parquet
+# Bases de dados brutas pesadas (>50MB / limites do GitHub)
+# Use 'python3 09_AUTOMACAO/scripts/01_download_dados_aneel.py' para baixar diretamente da ANEEL
+02_DADOS_BRUTOS/*.gdb.zip
 02_DADOS_BRUTOS/*.gdb/
+02_DADOS_BRUTOS/*.parquet
+*.zip
 
-# Arquivos temporários
-*.tmp
+# Logs e temporários
 *.log
-.git_backup_antes_publicacao/
+*.tmp
 .git_backup_antes_publicacao/
