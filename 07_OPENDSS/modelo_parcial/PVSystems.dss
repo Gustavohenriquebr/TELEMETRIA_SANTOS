@@ -1,27 +1,28 @@
 ! ====================================================================
 ! USINAS SOLARES FOTOVOLTAICAS CONECTADAS NA BT — STO33
 ! POTENCIAS NOMINAIS REAIS DO CADASTRO OFICIAL ANEEL MMGD (195.89 kW)
+! BARRAMENTOS CORRIGIDOS: UNI_TR_MT → Transformer BT bus (secundário)
 ! ====================================================================
-New PVSystem.PV_df6488f7 phases=3 bus1=BT_STO33_BT_STO33_1147083.1.2.3 conn=wye kv=0.22 pmpp=3.00 kVA=3.30 pf=1.0 daily=PerfilSolar irradiance=1.0
-New PVSystem.PV_2da95551 phases=3 bus1=BT_STO33_BT_STO33_1145098.1.2.3 conn=wye kv=0.22 pmpp=9.90 kVA=10.89 pf=1.0 daily=PerfilSolar irradiance=1.0
-New PVSystem.PV_32db3a4a phases=3 bus1=BT_STO33_BT_STO33_1131361.1.2.3 conn=wye kv=0.22 pmpp=6.60 kVA=7.26 pf=1.0 daily=PerfilSolar irradiance=1.0
-New PVSystem.PV_eff8a1d0 phases=3 bus1=BT_STO33_BT_STO33_1675199.1.2.3 conn=wye kv=0.22 pmpp=4.00 kVA=4.40 pf=1.0 daily=PerfilSolar irradiance=1.0
-New PVSystem.PV_eb4703e5 phases=3 bus1=BT_STO33_BT_STO33_1143042.1.2.3 conn=wye kv=0.22 pmpp=20.00 kVA=22.00 pf=1.0 daily=PerfilSolar irradiance=1.0
-New PVSystem.PV_0da32ee4 phases=3 bus1=BT_STO33_BT_STO33_1114759.1.2.3 conn=wye kv=0.22 pmpp=8.00 kVA=8.80 pf=1.0 daily=PerfilSolar irradiance=1.0
-New PVSystem.PV_bb21ef28 phases=3 bus1=BT_STO33_BT_STO33_1322758.1.2.3 conn=wye kv=0.22 pmpp=10.00 kVA=11.00 pf=1.0 daily=PerfilSolar irradiance=1.0
-New PVSystem.PV_b5ce1fec phases=3 bus1=BT_STO33_BT_STO33_1421119.1.2.3 conn=wye kv=0.22 pmpp=5.00 kVA=5.50 pf=1.0 daily=PerfilSolar irradiance=1.0
-New PVSystem.PV_aa29ad8e phases=3 bus1=BT_STO33_BT_STO33_1563560.1.2.3 conn=wye kv=0.22 pmpp=20.00 kVA=22.00 pf=1.0 daily=PerfilSolar irradiance=1.0
-New PVSystem.PV_ea0f3fcf phases=3 bus1=BT_STO33_BT_STO33_1422063.1.2.3 conn=wye kv=0.22 pmpp=6.60 kVA=7.26 pf=1.0 daily=PerfilSolar irradiance=1.0
-New PVSystem.PV_ba797426 phases=3 bus1=BT_STO33_BT_STO33_1497079.1.2.3 conn=wye kv=0.22 pmpp=10.00 kVA=11.00 pf=1.0 daily=PerfilSolar irradiance=1.0
-New PVSystem.PV_b1ed81d9 phases=3 bus1=BT_STO33_BT_STO33_1611047.1.2.3 conn=wye kv=0.22 pmpp=4.00 kVA=4.40 pf=1.0 daily=PerfilSolar irradiance=1.0
-New PVSystem.PV_4a8a9098 phases=3 bus1=BT_STO33_BT_STO33_1421063.1.2.3 conn=wye kv=0.22 pmpp=30.00 kVA=33.00 pf=1.0 daily=PerfilSolar irradiance=1.0
-New PVSystem.PV_97503c63 phases=3 bus1=BT_STO33_BT_STO33_1421064.1.2.3 conn=wye kv=0.22 pmpp=4.00 kVA=4.40 pf=1.0 daily=PerfilSolar irradiance=1.0
-New PVSystem.PV_9e303a4b phases=3 bus1=BT_STO33_BT_STO33_1111128.1.2.3 conn=wye kv=0.22 pmpp=5.50 kVA=6.05 pf=1.0 daily=PerfilSolar irradiance=1.0
-New PVSystem.PV_5ae60146 phases=3 bus1=BT_STO33_BT_STO33_1107906.1.2.3 conn=wye kv=0.22 pmpp=7.00 kVA=7.70 pf=1.0 daily=PerfilSolar irradiance=1.0
-New PVSystem.PV_0a88697f phases=3 bus1=BT_STO33_BT_STO33_1112392.1.2.3 conn=wye kv=0.22 pmpp=4.05 kVA=4.46 pf=1.0 daily=PerfilSolar irradiance=1.0
-New PVSystem.PV_92817ef2 phases=3 bus1=BT_STO33_BT_STO33_1109881.1.2.3 conn=wye kv=0.22 pmpp=8.00 kVA=8.80 pf=1.0 daily=PerfilSolar irradiance=1.0
-New PVSystem.PV_9a652c3c phases=3 bus1=BT_STO33_BT_STO33_1113558.1.2.3 conn=wye kv=0.22 pmpp=3.30 kVA=3.63 pf=1.0 daily=PerfilSolar irradiance=1.0
-New PVSystem.PV_5f6cd374 phases=3 bus1=BT_STO33_BT_STO33_1390592.1.2.3 conn=wye kv=0.22 pmpp=5.64 kVA=6.20 pf=1.0 daily=PerfilSolar irradiance=1.0
-New PVSystem.PV_5ec48824 phases=3 bus1=BT_STO33_BT_STO33_1109515.1.2.3 conn=wye kv=0.22 pmpp=5.00 kVA=5.50 pf=1.0 daily=PerfilSolar irradiance=1.0
-New PVSystem.PV_c2d7a307 phases=3 bus1=BT_STO33_BT_STO33_1112953.1.2.3 conn=wye kv=0.22 pmpp=8.80 kVA=9.68 pf=1.0 daily=PerfilSolar irradiance=1.0
-New PVSystem.PV_31cd0ac5 phases=3 bus1=BT_STO33_BT_STO33_1541476.1.2.3 conn=wye kv=0.22 pmpp=7.50 kVA=8.25 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_df6488f7 phases=3 bus1=BT_STO33_31204.1.2.3 conn=wye kv=0.22 pmpp=3.00 kVA=3.30 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_2da95551 phases=3 bus1=BT_STO33_43844.1.2.3 conn=wye kv=0.22 pmpp=9.90 kVA=10.89 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_32db3a4a phases=3 bus1=BT_STO33_30926.1.2.3 conn=wye kv=0.22 pmpp=6.60 kVA=7.26 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_eff8a1d0 phases=3 bus1=BT_STO33_31142.1.2.3 conn=wye kv=0.22 pmpp=4.00 kVA=4.40 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_eb4703e5 phases=3 bus1=BT_STO33_31138.1.2.3 conn=wye kv=0.22 pmpp=20.00 kVA=22.00 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_0da32ee4 phases=2 bus1=BT_STO33_52210.1.2.3 conn=wye kv=0.22 pmpp=8.00 kVA=8.80 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_bb21ef28 phases=2 bus1=BT_STO33_52209.1.2.3 conn=wye kv=0.22 pmpp=10.00 kVA=11.00 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_b5ce1fec phases=2 bus1=BT_STO33_51306.1.2.3 conn=wye kv=0.22 pmpp=5.00 kVA=5.50 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_aa29ad8e phases=2 bus1=BT_STO33_53800.1.2.3 conn=wye kv=0.22 pmpp=20.00 kVA=22.00 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_ea0f3fcf phases=2 bus1=BT_STO33_51307.1.2.3 conn=wye kv=0.22 pmpp=6.60 kVA=7.26 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_ba797426 phases=2 bus1=BT_STO33_52808.1.2.3 conn=wye kv=0.22 pmpp=10.00 kVA=11.00 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_b1ed81d9 phases=2 bus1=BT_STO33_52808.1.2.3 conn=wye kv=0.22 pmpp=4.00 kVA=4.40 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_4a8a9098 phases=1 bus1=BT_STO33_56616.1.2.3 conn=wye kv=0.22 pmpp=30.00 kVA=33.00 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_97503c63 phases=2 bus1=BT_STO33_56616.1.2.3 conn=wye kv=0.22 pmpp=4.00 kVA=4.40 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_9e303a4b phases=2 bus1=BT_STO33_55118.1.2.3 conn=wye kv=0.22 pmpp=5.50 kVA=6.05 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_5ae60146 phases=2 bus1=BT_STO33_30450.1.2.3 conn=wye kv=0.22 pmpp=7.00 kVA=7.70 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_0a88697f phases=2 bus1=BT_STO33_30515.1.2.3 conn=wye kv=0.22 pmpp=4.05 kVA=4.46 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_92817ef2 phases=2 bus1=BT_STO33_30497.1.2.3 conn=wye kv=0.22 pmpp=8.00 kVA=8.80 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_9a652c3c phases=2 bus1=BT_STO33_43167.1.2.3 conn=wye kv=0.22 pmpp=3.30 kVA=3.63 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_5f6cd374 phases=2 bus1=BT_STO33_38815.1.2.3 conn=wye kv=0.22 pmpp=5.64 kVA=6.20 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_5ec48824 phases=2 bus1=BT_STO33_30477.1.2.3 conn=wye kv=0.22 pmpp=5.00 kVA=5.50 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_c2d7a307 phases=2 bus1=BT_STO33_30536.1.2.3 conn=wye kv=0.22 pmpp=8.80 kVA=9.68 pf=1.0 daily=PerfilSolar irradiance=1.0
+New PVSystem.PV_31cd0ac5 phases=2 bus1=BT_STO33_47076.1.2.3 conn=wye kv=0.22 pmpp=7.50 kVA=8.25 pf=1.0 daily=PerfilSolar irradiance=1.0
