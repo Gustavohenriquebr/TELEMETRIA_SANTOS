@@ -5,11 +5,11 @@
 [![OpenDSS](https://img.shields.io/badge/Simulation-OpenDSS%20QSTS-green.svg)](https://www.epri.com/pages/sa/opendss)
 [![BDGD](https://img.shields.io/badge/Data-ANEEL%20BDGD%202025-orange.svg)](https://dadosabertos.aneel.gov.br/)
 [![COBRIC](https://img.shields.io/badge/Pesquisa-COBRIC%202026-purple.svg)]()
-[![Status](https://img.shields.io/badge/Auditoria%20e%20Pipeline-100%25%20Auditado-brightgreen.svg)]()
+[![Status](https://img.shields.io/badge/Auditoria%20e%20Pipeline-Missão%203%20Fisicamente%20Validada-brightgreen.svg)]()
 
 Base técnica, analítica e de modelagem computacional para a reconstrução topológica, telemetria elétrica, auditoria técnica e diagnóstico da rede de média tensão do alimentador **STO33** da **CPFL Piratininga** (Subestação Santos 1).
 
-O projeto integra dados georreferenciados oficiais da **ANEEL (BDGD 2025, INDGER, MMGD, Curvas CTR)** e do **DETRAN-SP**, modelagem elétrica quase-estática temporal (QSTS de 24h) em **OpenDSS**, grafos em **NetworkX**, mapas interativos em **Folium/Leaflet**, e o estudo comparativo de **5 cenários para o Congresso Brasileiro de Iniciação Científica (COBRIC 2026)** avaliando a integração de sistemas fotovoltaicos (FV), veículos elétricos (VE), sistemas de armazenamento de energia em baterias (BESS centralizado e distribuído) e reforço físico de rede.
+O projeto integra dados georreferenciados oficiais da **ANEEL (BDGD 2025, INDGER, MMGD, Curvas CTR)** e do **DETRAN-SP**, modelagem elétrica quase-estática temporal (QSTS de 24h) em **OpenDSS**, grafos em **NetworkX**, mapas interativos em **Folium/Leaflet**, e o estudo comparativo de **5 cenários para o Congresso Brasileiro de Iniciação Científica (COBRIC 2026)** avaliando a integração de sistemas fotovoltaicos (FV), veículos elétricos (VE), sistemas de armazenamento de energia em baterias (BESS centralizado e distribuído com controle físico estrito de $SOC$) e reforço físico de rede.
 
 ---
 
@@ -58,53 +58,55 @@ O alimentador STO33 foi modelado e simulado em regime permanente e em simulaçã
 
 ---
 
-## 3. Pesquisa COBRIC 2026: Avaliação dos 5 Cenários Técnicos
+## 3. Pesquisa COBRIC 2026: Avaliação dos 5 Cenários Técnicos (Resultados Atualizados da Missão 3)
 
-Para o artigo do COBRIC 2026, foram implementados e simulados 5 cenários operacionais para comparar os impactos técnicos da expansão de recursos energéticos distribuídos (REDs) e soluções de flexibilidade:
+Na **Missão 3**, os modelos de BESS foram reformulados com controle rigoroso de estado de carga ($10\% \le SOC \le 90\%$) e eficiência round-trip de 90,25%, garantindo fechamento perfeito de balanço de energia sem déficit diário:
 
 1. **Cenário A (Baseline):** Rede atual com 195,89 kW de geração fotovoltaica cadastrada na ANEEL.
 2. **Cenário B (Expansão FV + VE):** Dobra a capacidade solar (+195,89 kW) e adiciona **100 veículos elétricos (740 kW de carregadores residenciais de 7,4 kW)** alocados nos 20 maiores transformadores residenciais, com pico de recarga noturno sincronizado (curva `PerfilVE`).
-3. **Cenário C (BESS Centralizado na Subestação):** Adiciona sistema BESS de **1,5 MW / 3,0 MWh** na barra de 13,8 kV da Subestação Santos 1, com despacho programado para corte de ponta (peak shaving de 1.000 kW entre 19h e 21h) e recarga no vale noturno e pico solar.
-4. **Cenário D (BESS Distribuído nos Transformadores Críticos):** Instalação de **3 BESS de 50 kW / 150 kWh (total 150 kW / 450 kWh)** conectados na baixa tensão (0,22 kV) dos transformadores mais sobrecarregados (`TR_1193581`, `TR_1193923`, `TR_1193996`).
-5. **Cenário E (Reforço Físico Convencional — *Wires Alternative*):** Substituição dos 3 transformadores críticos por unidades de 300 kVA e recondutoramento de 4,5 km do tronco primário para cabos de 575 A (menor resistência ôhmica $R_1$).
+3. **Cenário C (BESS Centralizado na Subestação):** BESS de **1,5 MW / 3,0 MWh** na barra de 13,8 kV da Subestação Santos 1, com despacho fisicamente controlado para corte de ponta (descarrega 2.200 kWh entre 19h e 21h; recarrega 2.210 kWh no vale noturno e pico solar).
+4. **Cenário D (BESS Distribuído nos Transformadores Críticos):** **3 unidades BESS de 50 kW / 150 kWh (total 150 kW / 450 kWh)** conectadas na baixa tensão (0,22 kV) dos transformadores mais sobrecarregados (`TR_1193581`, `TR_1193923`, `TR_1193996`), com controle de $SOC$ independente por unidade.
+5. **Cenário E (Reforço Físico Convencional — *Wires Alternative*):** Substituição dos 3 transformadores críticos por unidades de 300 kVA e recondutoramento de 188 trechos de tronco (5,25 km) para condutores de 575 A (código `PA6001` com menor resistência ôhmica $R_1$).
 
-### Matriz de Indicadores Comparativos Simulada no OpenDSS
+### Matriz de Indicadores Comparativos Simulada no OpenDSS (Missão 3)
 
 | Indicador Técnico / Econômico | Cenário A (Baseline) | Cenário B (FV + VE) | Cenário C (BESS Centralizado) | Cenário D (BESS Distribuído) | Cenário E (Reforço Físico) |
 |:---|:---:|:---:|:---:|:---:|:---:|
-| **Demanda de Pico na Subestação (kW)** | 2.982,50 | 3.724,90 | **2.724,82** | 3.580,86 | 3.722,92 |
-| **Hora do Pico Diário** | 20h | 20h | 20h | 20h | 20h |
-| **Alívio de Ponta vs Cenário B (kW / %)** | — | Referência | **-1.000,08 kW (-26,8%)** | -144,04 kW (-3,9%) | -1,98 kW (-0,05%) |
-| **Demanda Mínima (kW)** | 658,14 | 665,61 | 665,57 | 665,68 | 665,53 |
-| **Energia Diária Injetada (kWh/dia)** | 29.413,03 | 32.823,09 | 31.622,81 | 32.714,18 | 32.814,77 |
-| **Perdas Técnicas Diárias (kWh/dia)** | 1.539,15 | 1.664,31 | 1.664,00 | **1.645,01** | 1.655,72 |
-| **Percentual de Perdas Diárias (%)** | 5,23% | 5,07% | 5,26% | **5,03%** | 5,05% |
-| **Tensão Mínima ($V_{\min}$, pu)** | 0,9744 | 0,9523 | 0,9531 | **0,9540** | 0,9525 |
-| **Tensão Máxima ($V_{\max}$, pu)** | 1,0288 | 1,0288 | 1,0288 | 1,0288 | 1,0288 |
+| **Demanda de Pico na Subestação (kW)** | 2.982,50 | 3.724,90 | **2.780,92** | 3.580,88 | 3.722,92 |
+| **Hora do Pico Diário** | 20h | 20h | **19h** (20h: 2.774,84 kW) | 20h | 20h |
+| **Alívio de Ponta vs Cenário B (kW / %)** | — | Referência | **-943,98 kW (-25,3%)** | -144,02 kW (-3,9%) | -1,98 kW (-0,05%) |
+| **Demanda Mínima (kW)** | 658,14 | 665,61 | 767,07 | 665,68 | 665,53 |
+| **Energia Diária Injetada (kWh/dia)** | 29.413,03 | 32.823,09 | 32.833,33 | 32.810,70 | 32.814,77 |
+| **Perdas Técnicas Diárias (kWh/dia)** | 1.539,15 | 1.664,31 | 1.664,02 | **1.649,67** | 1.655,72 |
+| **Percentual de Perdas Diárias (%)** | 5,23% | 5,07% | 5,07% | **5,03%** | 5,05% |
+| **Tensão Mínima ($V_{\min}$, pu)** | 0,9744 | 0,9523 | 0,9530 | **0,9540** | 0,9525 |
+| **Tensão Máxima ($V_{\max}$, pu)** | 1,0288 | 1,0288 | 1,0286 | 1,0288 | 1,0288 |
 | **CAPEX Estimado da Solução (R$)** | R$ 0,00 | R$ 0,00 | R$ 4.950.000,00 | R$ 945.000,00 | **R$ 553.500,00** |
+| **Convergência Numérica (100% passos)** | **SIM** | **SIM** | **SIM** | **SIM** | **SIM** |
 
-### Conclusões Técnicas da Comparação:
-- **Impacto do Cenário B (Crescimento de VEs):** A penetração não coordenada de 100 veículos elétricos eleva a demanda de pico em **+742,40 kW (+24,9%)**, rebaixa a tensão mínima para 0,9523 pu e acentua o risco térmico nos transformadores secundários.
-- **BESS Centralizado (Cenário C):** É a solução mais eficaz para **corte de ponta na subestação** (-1.000 kW), permitindo postergar ampliações de subestação e transformadores de força AT/MT, porém exige alto investimento (R$ 4,95M) e não reduz as perdas ao longo dos 19,37 km do alimentador.
-- **BESS Distribuído (Cenário D):** Apresenta o **melhor desempenho técnico local**, alcançando as **menores perdas elétricas da rede (1.645 kWh/dia, alívio de 19,3 kWh/dia)** e o melhor suporte de tensão ($V_{\min} = 0,9540\text{ pu}$), aliviando diretamente os transformadores críticos por injetar energia diretamente na baixa tensão com 1/5 do custo do BESS centralizado.
-- **Reforço Físico (Cenário E):** Representa a alternativa convencional mais barata (R$ 553,5k), eliminando o gargalo térmico dos transformadores, mas sem oferecer flexibilidade operacional, armazenamento de energia ou capacidade de absorção de excedentes solares.
+### Conclusões Técnicas Centrais da Auditoria Física:
+1. **BESS Centralizado (Cenário C):** É altamente eficiente para **corte de ponta sistêmico na subestação** (-944 kW), permitindo postergar obras no transformador de força AT/MT. Contudo, **NÃO reduz a sobrecarga nos transformadores de distribuição** (o carregamento do trafo `TR_1193581` permanece inalterado em 94,67%), pois a corrente continua fluindo pela rede secundária.
+2. **BESS Distribuído (Cenário D):** É a alternativa mais equilibrada e eficaz para a rede local, aliviando o transformador mais crítico de **94,67% para 75,04%** (-19,63% de carregamento), alcançando as **menores perdas técnicas da rede (1.649,67 kWh/dia)** e o melhor perfil de tensão ($V_{\min} = 0,9540\text{ pu}$), com cerca de 19% do custo de investimento do BESS centralizado.
+3. **Reforço Físico (Cenário E):** Elimina a sobrecarga dos transformadores por aumento de capacidade nominal (carregamento cai para 70,08%) com o menor CAPEX inicial (R$ 553,5k), porém possui ativo passivo sem flexibilidade operativa ou capacidade de armazenamento de excedentes solares.
 
 ---
 
-## 4. Auditoria Técnica e Qualidade dos Dados
+## 4. Auditoria Técnica, Reprodutibilidade e Qualidade dos Dados
 
-Em conformidade com as diretrizes de integridade científica do COBRIC 2026, o repositório passou por uma auditoria técnica completa documentada em:
+O repositório passou por três ciclos rigorosos de auditoria técnica documentados em `08_RELATORIOS/`:
+
+### 4.1. Auditoria Técnica Geral e Rastreabilidade
 - Relatório de Auditoria: [`08_RELATORIOS/AUDITORIA_TECNICA_STO33.md`](08_RELATORIOS/AUDITORIA_TECNICA_STO33.md)
 - Matriz de Divergências: [`08_RELATORIOS/MATRIZ_DIVERGENCIAS_STO33.csv`](08_RELATORIOS/MATRIZ_DIVERGENCIAS_STO33.csv)
-- Resultados Consolidados: [`08_RELATORIOS/RESULTADOS_CENARIOS_COBRIC.csv`](08_RELATORIOS/RESULTADOS_CENARIOS_COBRIC.csv)
-- Séries Horárias de 24h: [`08_RELATORIOS/CURVAS_HORARIAS_CENARIOS_COBRIC.csv`](08_RELATORIOS/CURVAS_HORARIAS_CENARIOS_COBRIC.csv)
+- Validação de Reprodutibilidade (Missão 2): [`08_RELATORIOS/validacao_reprodutibilidade/VALIDACAO_REPRODUTIBILIDADE_COBRIC.md`](08_RELATORIOS/validacao_reprodutibilidade/VALIDACAO_REPRODUTIBILIDADE_COBRIC.md)
+- Comparação Matemática (Missão 2): [`08_RELATORIOS/validacao_reprodutibilidade/COMPARACAO_RESULTADOS_PUBLICADOS.csv`](08_RELATORIOS/validacao_reprodutibilidade/COMPARACAO_RESULTADOS_PUBLICADOS.csv)
 
-### Principais Correções e Rastreabilidade Comprovada:
-1. **Potência Fotovoltaica:** Corrigida de 44,35 kW para **195,89 kW**, após cruzamento individual de cada código `CEG_GD` com o cadastro oficial da ANEEL MMGD.
-2. **Capacidade dos Transformadores:** Corrigida para **14.318,0 kVA** (105 transformadores), eliminando a omissão anterior do transformador de 25 kVA (`1194151`).
-3. **Extensão Física de MT:** Ajustada para **19,37 km** (soma auditada do campo `COMP` da BDGD).
-4. **Reativos da Subestação:** Retificados para **434,89 kvar** ($FP = 0,989$ indutivo) com capacitores em operação.
-5. **Contexto Geográfico:** Comprovado documentalmente que, embora a subestação pertença ao cadastro de Santos, 98,1% da rede física atende a área conurbada do Jardim Casqueiro (Cubatão/SP).
+### 4.2. Auditoria e Correção Física dos BESS (Missão 3 — Outubro/2026)
+- Relatório Executivo da Missão 3: [`08_RELATORIOS/validacao_missao_3/RELATORIO_CORRECAO_BESS_COBRIC.md`](08_RELATORIOS/validacao_missao_3/RELATORIO_CORRECAO_BESS_COBRIC.md)
+- Balanço Energético Detalhado dos BESS: [`08_RELATORIOS/validacao_missao_3/BALANCO_ENERGETICO_BESS.csv`](08_RELATORIOS/validacao_missao_3/BALANCO_ENERGETICO_BESS.csv)
+- Comparação Antes vs Depois: [`08_RELATORIOS/validacao_missao_3/COMPARACAO_ANTES_DEPOIS.csv`](08_RELATORIOS/validacao_missao_3/COMPARACAO_ANTES_DEPOIS.csv)
+- Validação Física e Elétrica: [`08_RELATORIOS/validacao_missao_3/VALIDACAO_FISICA_ELETRICA.md`](08_RELATORIOS/validacao_missao_3/VALIDACAO_FISICA_ELETRICA.md)
+- Análise Econômica Atualizada: [`08_RELATORIOS/validacao_missao_3/ANALISE_ECONOMICA_ATUALIZADA.md`](08_RELATORIOS/validacao_missao_3/ANALISE_ECONOMICA_ATUALIZADA.md)
 
 ---
 
@@ -158,37 +160,34 @@ TELEMETRIA_SANTOS/
 │
 ├── 07_OPENDSS/                              <- Modelagem Computacional Elétrica
 │   ├── dados_modelo/                        <- Tabelas tratadas formatadas para o OpenDSS
-│   │   ├── pvsystems_opendss.csv            <- 23 usinas solares com 195,89 kW auditados
-│   │   └── resultado_fluxo_diario_sto33.csv <- Curva diária de 24h simulada no alimentador
-│   ├── modelo_parcial/                      <- Scripts e componentes OpenDSS do STO33
-│   │   ├── Master.dss                       <- Script mestre com EnergyMeter e Monitores
-│   │   ├── Circuit.dss                      <- Barra infinita e equivalente de curto-circuito
-│   │   ├── LineCodes.dss                    <- Parâmetros de sequência (R1, X1, R0, X0)
-│   │   ├── Lines.dss                        <- 792 trechos (730 condutores + 62 chaves fechadas)
-│   │   ├── Transformers.dss                 <- 105 transformadores (14.318 kVA totais)
-│   │   ├── Loads.dss                        <- 94 cargas trifásicas agregadas
-│   │   ├── PVSystems.dss                    <- 23 usinas solares fotovoltaicas (195,89 kW)
-│   │   ├── Capacitors.dss                   <- 2 bancos de capacitores (2x 300 kvar)
-│   │   ├── LoadShapes.dss                   <- Curvas diárias normalizadas (24 horas)
-│   │   └── simulate_sto33.py                <- Simulação Snapshot e QSTS diária (24h)
-│   ├── cenarios_cobric/                     <- Cenários de Estudo para o Artigo do COBRIC 2026
-│   │   ├── Cenario_A_Baseline.dss           <- Modelo da rede atual
-│   │   ├── Cenario_B_Expansao_FV_VE.dss     <- Expansão FV (+100%) + 100 VEs (740 kW)
-│   │   ├── Cenario_C_BESS_Centralizado.dss  <- BESS 1,5 MW / 3,0 MWh na Subestação
-│   │   ├── Cenario_D_BESS_Distribuido.dss   <- 3 BESS de 50 kW / 150 kWh nos trafos críticos
-│   │   ├── Cenario_E_Reforco_Fisico.dss     <- Upgrades de trafos para 300 kVA e cabos 575 A
-│   │   └── run_cenarios_cobric.py           <- Executor QSTS automatizado dos 5 cenários
-│   └── README_modelagem.md                  <- Documentação técnica da modelagem
+│   ├── modelo_parcial/                      <- Scripts base do alimentador STO33
+│   └── cenarios_cobric/                     <- 5 Cenários Oficiais COBRIC 2026 (Modelos DSS)
+│       ├── Cenario_A_Baseline.dss           <- Modelo da rede atual
+│       ├── Cenario_B_Expansao_FV_VE.dss     <- Expansão FV (+100%) + 100 VEs (740 kW)
+│       ├── Cenario_C_BESS_Centralizado.dss  <- BESS 1,5 MW / 3,0 MWh com controle físico de SOC
+│       ├── Cenario_D_BESS_Distribuido.dss   <- 3 BESS de 50 kW / 150 kWh com SOC independente
+│       ├── Cenario_E_Reforco_Fisico.dss     <- Upgrades de trafos para 300 kVA e cabos 575 A
+│       └── run_cenarios_cobric.py           <- Executor QSTS automatizado dos 5 cenários
 │
-├── 08_RELATORIOS/                           <- Relatórios Executivos, Técnicos e Auditoria
+├── 08_RELATORIOS/                           <- Relatórios Técnicos, Executivos e Auditorias
 │   ├── AUDITORIA_TECNICA_STO33.md           <- Relatório completo de auditoria do alimentador
 │   ├── MATRIZ_DIVERGENCIAS_STO33.csv        <- Matriz estruturada de inconsistências e ações
-│   ├── RESULTADOS_CENARIOS_COBRIC.csv       <- Tabela comparativa dos 5 cenários COBRIC 2026
+│   ├── RESULTADOS_CENARIOS_COBRIC.csv       <- Tabela comparativa oficial dos 5 cenários
 │   ├── CURVAS_HORARIAS_CENARIOS_COBRIC.csv  <- Séries temporais horárias (24h) dos 5 cenários
-│   ├── relatorio_executivo.md               <- Respostas formais às 20 perguntas do projeto
-│   ├── relatorio_tecnico_completo.md        <- Relatório de engenharia detalhado em 12 seções
-│   ├── metodologia_e_limitacoes.md          <- Metodologia de engenharia reversa e níveis A-G
-│   └── fontes_e_referencias.md              <- Catálogo bibliográfico e normas vigentes
+│   ├── validacao_reprodutibilidade/         <- Auditoria da Missão 2 (Reprodutibilidade Estrita)
+│   │   ├── VALIDACAO_REPRODUTIBILIDADE_COBRIC.md
+│   │   ├── COMPARACAO_RESULTADOS_PUBLICADOS.csv
+│   │   ├── MATRIZ_RASTREABILIDADE_CENARIOS.csv
+│   │   └── CHECKLIST_VALIDACAO_ELETRICA.md
+│   └── validacao_missao_3/                  <- Auditoria da Missão 3 (Modelos Físicos de BESS)
+│       ├── RELATORIO_CORRECAO_BESS_COBRIC.md
+│       ├── RESULTADOS_CENARIOS_COBRIC_MISSAO_3.csv
+│       ├── CURVAS_HORARIAS_COBRIC_MISSAO_3.csv
+│       ├── BALANCO_ENERGETICO_BESS.csv
+│       ├── COMPARACAO_ANTES_DEPOIS.csv
+│       ├── VALIDACAO_FISICA_ELETRICA.md
+│       ├── ANALISE_ECONOMICA_ATUALIZADA.md
+│       └── README_MISSAO_3.md
 │
 └── 09_AUTOMACAO/                            <- Pipeline Automatizado em Python
     ├── requirements.txt                     <- Dependências do projeto (pyogrio, opendssdirect, etc.)
@@ -207,35 +206,19 @@ TELEMETRIA_SANTOS/
 pip install -r 09_AUTOMACAO/requirements.txt
 ```
 
-### 6.2. Executar a Simulação do Alimentador STO33 (Snapshot + 24h QSTS)
-Para simular o fluxo de carga estático e a curva diária horária:
-```bash
-python3 07_OPENDSS/modelo_parcial/simulate_sto33.py
-```
-
-### 6.3. Executar a Simulação Comparativa dos 5 Cenários do COBRIC 2026
-Para rodar a simulação temporal horária de 24 horas dos 5 cenários e gerar as tabelas comparativas:
+### 6.2. Executar a Simulação dos 5 Cenários (Resultados Físicos Consolidados)
 ```bash
 python3 07_OPENDSS/cenarios_cobric/run_cenarios_cobric.py
 ```
-Os resultados são consolidados automaticamente em:
-- `08_RELATORIOS/RESULTADOS_CENARIOS_COBRIC.csv`
-- `08_RELATORIOS/CURVAS_HORARIAS_CENARIOS_COBRIC.csv`
+
+### 6.3. Executar o Orquestrador da Missão 3 (Validação Física e Balanço de SOC)
+```bash
+python3 08_RELATORIOS/validacao_missao_3/executar_missao_3.py
+```
 
 ---
 
-## 7. Visualização do Mapa Interativo
-
-Abra o arquivo [`04_TOPOLOGIA/mapa_sto33.html`](04_TOPOLOGIA/mapa_sto33.html) em qualquer navegador web para explorar:
-- **Subestação STO (Santos 1):** Ponto de injeção de potência.
-- **Rede de Média Tensão (730 trechos):** Representados com espessura proporcional à ampacidade do condutor.
-- **Transformadores de Distribuição (105 trafos):** Cores indicativas de nível de potência instalada.
-- **Equipamentos de Manobra (86 chaves):** Diferenciadas entre Normalmente Fechadas (verde) e Normalmente Abertas (vermelho).
-- **Usinas Solares (23 sistemas PV):** Marcadas com detalhes de potência de pico e classe de tensão.
-
----
-
-## 8. Autoria e Licença
+## 7. Autoria e Licença
 
 Desenvolvido no âmbito do projeto de modelagem elétrica, telemetria e estudos de redes inteligentes da distribuição da Baixada Santista para submissão ao **COBRIC 2026**.
 Dados de origem pública conforme Lei de Acesso à Informação (Lei 12.527/2011) e normas regulatórias da ANEEL.
