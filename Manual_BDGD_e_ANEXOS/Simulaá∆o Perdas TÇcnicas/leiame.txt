@@ -1,0 +1,28 @@
+
+	ProgGeoPerdas (exe), GeoPerdas (SQL), SIG-R (SQL) e Dados de Curvas de Carga
+
+	Scripts para criação dos Bancos de Dados (SQL/Server) com programa para Simulação de Fluxos de Potência a partir da BDGD (SIG-R/Módulo 10/PRODIST).
+	
+	- script_ddad_m10 - Banco de Dados com as tabelas e valores do Dicionário de Dados ANEEL da Distribuidora - DDA. Seguir os seguintes passos:
+		1. criar o banco GEO_SIGR_DDAD_M10
+		2. criar o schema sde;
+		3. executar o script. 
+	
+	- script_sigr - Banco de dados das tabelas do SIG-R que devem ser alimentadas pela BDGD das distribuidoras (Ex. Importar do SQL direto dos dbfs). Seguir os seguintes passos:
+		1. criar o banco GEO_SIGR_PERDAS
+		2. criar o schema sde;
+		3. executar o script.
+	   Obs: As tabelas EQTRD, EQTRS e EQRE tem um campo chamado CodBnc que deve ser prenchido da seguinte maneira: valor 0 para equipamentos individuais que não têm outro equipamento em paralelo ou arranjo em Banco; valor 1 a n para Equipamentos em Banco ou que estão em paralelo (vide Manual de Instruções da BDGD). Complementarmente, preencher o campo DATA_BASE de todas tabelas com a data base da BDGD a ser testada.
+	
+	- script_curvas - Dados das tabelas de curvas de carga das distribuidoras que são carregados no banco geo_sigr_perdas. Seguir os seguintes passos:
+		1. Abrir shell do windows (cmd);
+		2. Executar comando: sqlcmd /S [instância sql] /d GEO_SIGR_PERDAS -i"[caminho]\script_curvas.sql"
+	
+	- script_GeoPerdas - Banco de Dados com estrutura para validação e fornecimento de dados para fluxo de potência a partir do OpenDSS. Seguir os seguintes passos:
+		1. criar o banco GeoPerdas2023b
+		2. executar o script.
+		Obs: A stored procedure "Principal" é a que carrega os dados do SIG-R e faz a validação de dados para o fluxo de potência. O parâmetro AnoRef deve ser o valor "perdas" para apontar para o banco geo_sigr_perdas. O parâmetro CodBase deve ser informado no formato [ano][mês][dist] que por exemplo seria 2019125160 no caso da dist 5160 e database 31/12/2019.
+	
+	Após carregar os dados da BDGD no banco GEO_SIGR_PERDAS, deve-se executar a stored procedure "_atualizav1.0" para compataibilizar o modelo de dados V1.0 para o Modelo Novo. Assim poderá se rodar a stored procedure "Principal" sem alterações no atual Script do banco GeoPerdas. Após estas etapas, o ProgGeoPerdas pode ser executado (setup.exe) apontando-se para a instância de banco em uso. Um usuário de banco com acesso owner deve ser criado e utilizado na simulação.
+	
+	O arquivo Dados_Fisico_RTP_v5_PT-TR_DISTRIBUIDORA_vDDMMAAAA.7z é o formato padrão de envio das curvas de carga para a SRD quando existe nova campanha de medição para fins de RTP.

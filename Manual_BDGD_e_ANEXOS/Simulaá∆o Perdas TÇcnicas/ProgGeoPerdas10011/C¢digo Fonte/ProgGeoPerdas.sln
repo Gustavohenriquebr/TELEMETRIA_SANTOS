@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgGeoPerdas", "ProgGeoPerdas\ProgGeoPerdas.csproj", "{6F81DF63-94EE-45FC-8B2C-85B7C42EDA68}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs.aneel.gov.br:8080/tfs/geocollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ProgGeoPerdas\\ProgGeoPerdas.csproj
+		SccProjectName1 = ProgGeoPerdas
+		SccLocalPath1 = ProgGeoPerdas
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6F81DF63-94EE-45FC-8B2C-85B7C42EDA68}.Debug|x86.ActiveCfg = Debug|x86
+		{6F81DF63-94EE-45FC-8B2C-85B7C42EDA68}.Debug|x86.Build.0 = Debug|x86
+		{6F81DF63-94EE-45FC-8B2C-85B7C42EDA68}.Release|x86.ActiveCfg = Release|x86
+		{6F81DF63-94EE-45FC-8B2C-85B7C42EDA68}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
